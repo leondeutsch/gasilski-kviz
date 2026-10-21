@@ -42,6 +42,7 @@
 body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 17px; line-height: 1.5; }
 .wrap { max-width: 720px; margin: 0 auto; padding-inline: 16px; padding-block: 28px 48px; display: flex; flex-direction: column; gap: 20px; }
 header { display: flex; flex-direction: column; gap: 4px; }
+.ver { font-size: 13px; opacity: .65; margin-top: 4px; }
 .eyebrow { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
 h1 { font-family: var(--font-display); font-weight: 700; font-size: 2.3rem; line-height: 1.05; margin: 0; text-wrap: balance; text-transform: uppercase; letter-spacing: .01em; }
 .sub { color: var(--muted); margin: 0; }
@@ -152,9 +153,10 @@ table.data tr:last-child td { border-bottom: 0; }
 
 <div class="wrap">
   <header>
-    <span class="eyebrow">Neuradni vadbeni kviz · poglavja 1–19</span>
+    <span class="eyebrow">Neuradni kviz · poglavja 1–19</span>
     <h1>Gasilska tekmovanja prostovoljnih gasilcev</h1>
     <p class="sub">Vprašanja z dvema, tremi ali štirimi odgovori, oznake na slikah in računske naloge. Računske naloge dobijo ob vsakem začetku nove številke.</p>
+    <p class="ver">Verzija 61 · posodobljeno 21. 10. 2026</p>
   </header>
 
   <aside class="note" role="note">
@@ -181,13 +183,22 @@ table.data tr:last-child td { border-bottom: 0; }
     <h3>3. Simulacija izpita</h3>
     <ul>
       <li>140 vprašanj, 60 minut, od tega 30 iz vaje z MB in 1 računska naloga – kot na pravem izpitu.</li>
+      <li>Klikni <b>Izpit brez mer</b> (priporočeno – izpuščena so vprašanja o velikosti prostora, razdaljah na progi in merah ovir) ali <b>Izpit z merami</b> (vsa vprašanja).</li>
       <li>Med reševanjem <b>ne vidiš</b>, ali je odgovor pravilen. Odgovor lahko spremeniš, dokler ne klikneš Naslednje vprašanje.</li>
       <li>Pravilni odgovori in razlage se pokažejo <b>šele na koncu</b> ali ko poteče čas. Ob vsakem vprašanju piše, iz katerega poglavja je.</li>
+    </ul>
+    <h3>Z merami ali brez mer?</h3>
+    <ul>
+      <li><b>Vprašanja o merah</b> so vprašanja o golih merah poligona: velikost tekmovalnega prostora, dolžina proge, razdalje do ovir in tarč ter višine in širine ovir (npr. »Kolikšna je proga za vajo z MB?« – 10 × 70 m).</li>
+      <li>Za sodnika je pomembneje poznati pravila in napake kot natančne mere poligona, ki jih ob tekmovanju tako ali tako pripravi organizator. Zato je priporočen <b>izpit brez mer</b> – več časa in vprašanj ostane za pravila, delo tekmovalcev in ocenjevanje.</li>
+      <li>Mere, ki so pomembne za sojenje, so <b>v obeh različicah</b>: ognjene črte, črta 41 m pri MB in 26 m pri hidrantu, širina prog in območje predaje pri štafetah, pas za opremljanje, pas za desetarja, steze pri vedrovki in deli proge pri mladincih.</li>
+      <li><b>Izpit z merami</b> je namenjen dodatni vadbi, če želiš znati tudi vse mere poligona.</li>
     </ul>
     <h3>Koristno</h3>
     <ul>
       <li>Na koncu vidiš rezultat in seznam napačnih odgovorov z razlago. Z gumbom <b>Ponovi samo napačne</b> vadiš samo tista vprašanja, ki si jih zgrešil.</li>
       <li>»Premešaj vprašanja« in »Premešaj odgovore« lahko izklopiš, če želiš vedno enak vrstni red.</li>
+      <li>Z izklopom »Vključi vprašanja o merah poligona« iz vadbe po poglavjih in mešanega testa izpustiš vprašanja o merah prostora, prog in ovir.</li>
       <li>Računske naloge dobijo ob vsakem začetku nove številke, zato jih lahko vadiš večkrat.</li>
       <li>Kviz deluje tudi na telefonu. Nič se ne shrani – ko stran osvežiš, začneš znova.</li>
     </ul>
@@ -202,8 +213,8 @@ table.data tr:last-child td { border-bottom: 0; }
   </div>
 
   <div class="mix">
-    <div class="mix-text"><strong>Simulacija izpita</strong><span>140 vprašanj · 60 minut · 30 iz vaje z MB · 1 računska naloga.</span><span><b>Pravilni odgovori se pokažejo šele na koncu</b> – med reševanjem ne vidiš, ali si odgovoril pravilno, odgovor pa lahko spremeniš, dokler ne greš na naslednje vprašanje.</span></div>
-    <div class="mix-ctl"><button class="btn" id="examGo">Začni simulacijo izpita</button></div>
+    <div class="mix-text"><strong>Simulacija izpita</strong><span>140 vprašanj · 60 minut · 30 iz vaje z MB · 1 računska naloga. Priporočen je izpit <b>brez mer</b> (brez vprašanj o merah poligona, razdaljah na progi in merah ovir); za dodatno vadbo lahko izbereš tudi izpit <b>z merami</b>.</span><span><b>Pravilni odgovori se pokažejo šele na koncu</b> – med reševanjem ne vidiš, ali si odgovoril pravilno, odgovor pa lahko spremeniš, dokler ne greš na naslednje vprašanje.</span></div>
+    <div class="mix-ctl"><button class="btn" id="examGoNoM">Izpit brez mer</button><button class="btn ghost" id="examGo">Izpit z merami</button></div>
   </div>
 
   <div class="chhead">
@@ -216,6 +227,7 @@ table.data tr:last-child td { border-bottom: 0; }
   <div class="settings">
     <label><input type="checkbox" id="shuffleQ" checked> Premešaj vprašanja</label>
     <label><input type="checkbox" id="shuffleA" checked> Premešaj odgovore</label>
+    <label><input type="checkbox" id="withMere" checked> Vključi vprašanja o merah poligona</label>
   </div>
 
   <div class="bar"><span id="pos">1 / 1</span><div class="track"><div class="fill" id="fill"></div></div><span class="timer" id="timer" hidden></span><span id="pts">0 pravilnih</span></div>
@@ -339,7 +351,7 @@ const P3 = [
   {t:"3.1 Oprema", q:"Kdo zagotovi opremo za tekmovanje?", o:["Organizator ali posamezna enota, odvisno od opisa discipline","Vedno organizator","Vedno enota sama"], e:"Opremo lahko zagotovi organizator ali posamezna enota, odvisno od opisa."},
   {t:"3.1 Oprema", q:"Kakšna je letev, ki označuje mesto odvzema vode?", o:["Rdeča, dolga 3 m in široka 10 cm","Bela, dolga 3 m in široka 5 cm","Rdeča, dolga 2 m in široka 10 cm","Modra, dolga 3 m in široka 10 cm"], e:"Odvzem vode označuje rdeča letev, 3 m × 10 cm (tudi oznaka na preprogi)."},
   {t:"3.1 Oprema", q:"Kolikšne so mere vodnega rezervoarja?", o:["1,2 m × 1,2 m × 0,8 m","1 m × 1 m × 1 m","1,5 m × 1,2 m × 0,8 m","1,2 m × 0,8 m × 0,8 m"], e:"Vodni rezervoar meri 1,2 m × 1,2 m × 0,8 m."},
-  {t:"3.1 Oprema", q:"Kako široka je črta, ki označuje proge?", o:["Med 5 in 10 cm","Med 3 in 5 cm","Točno 10 cm"], e:"Črta, ki označuje proge, je široka med 5 in 10 cm."},
+  {m:1, t:"3.1 Oprema", q:"Kako široka je črta, ki označuje proge?", o:["Med 5 in 10 cm","Med 3 in 5 cm","Točno 10 cm"], e:"Črta, ki označuje proge, je široka med 5 in 10 cm."},
   {t:"3.1 Oprema", q:"Kako dolge so tlačne B cevi?", o:["20 m, pri starejših gasilcih 15 m","15 m za vse kategorije","20 m za vse kategorije","25 m, pri starejših gasilcih 20 m"], e:"Tlačne B cevi so dolge 20 m, pri starejših gasilcih 15 m."},
   {t:"3.1 Oprema", q:"Kako dolge so tlačne C cevi?", o:["15 m","20 m","10 m"], e:"Tlačne C cevi so dolge 15 m."},
   {t:"3.1 Oprema", q:"Kolikšna je dovoljena toleranca dolžine tlačnih cevi?", o:["2 %","5 %","1 %","10 %"], e:"Pri B in C ceveh je toleranca 2 %."},
@@ -853,7 +865,7 @@ function genVedrovka(){
   ];
   shuffle(D).slice(0,4).forEach(x=>{
     const pool = [2,3,4,5,10,12,15].filter(v=>v!==x.v).sort((a,b)=>Math.abs(a-x.v)-Math.abs(b-x.v)).slice(0,3);
-    out.push({t:V+" · Prostor", q:"Kolikšna je razdalja, označena z vprašajem?", fig:fieldSvg(x.lane?{lane:true}:{dist:x.d})+FIELD_KEY,
+    out.push({m:1, t:V+" · Prostor", q:"Kolikšna je razdalja, označena z vprašajem?", fig:fieldSvg(x.lane?{lane:true}:{dist:x.d})+FIELD_KEY,
       o:[x.v+" m", ...pool.map(v=>v+" m")], e:x.txt});
   });
   out.push(gVedrovkaKaz(false), gVedrovkaKaz(false), gVedrovkaKaz(true));
@@ -866,20 +878,20 @@ const P5 = [
   {t:S5+" · Enota", q:"S čim so pokriti tekmovalci pri štafeti 400 m z ovirami za pionirje?", o:["Brez pokrivala","Z delovno kapo","S čelado"], e:"Pri štafeti so pionirji brez pokrivala (pri vaji z vedrovko pa z delovno kapo)."},
   {t:S5+" · Enota", q:"Koliko tekmovalcev teče v štafeti 400 m z ovirami za pionirje?", o:["9","8","10"], e:"Teče 9 tekmovalcev: D, S, St, N-1, N-2, V-1, V-2, C-1, C-2."},
   {t:S5+" · Oprema", q:"Kdo zagotovi orodje in opremo za štafeto?", o:["Organizator","Vsaka enota sama"], e:"Orodje in opremo za štafeto zagotovi organizator."},
-  {t:S5+" · Oprema", q:"Kolikšne so mere gredi?", o:["2 m × 0,2 m, višina 0,35 m","2 m × 0,3 m, višina 0,5 m","3 m × 0,2 m, višina 0,35 m","2 m × 0,2 m, višina 0,6 m"], e:"Gred je dolga 2 m, široka 0,2 m in visoka 0,35 m."},
-  {t:S5+" · Oprema", q:"Kolikšne so mere ovire za preskok?", o:["Višina 0,6 m, širina 1,2 m","Višina 0,8 m, širina 1,2 m","Višina 0,6 m, širina 2 m"], e:"Ovira za preskok je visoka 0,6 m in široka 1,2 m."},
+  {m:1, t:S5+" · Oprema", q:"Kolikšne so mere gredi?", o:["2 m × 0,2 m, višina 0,35 m","2 m × 0,3 m, višina 0,5 m","3 m × 0,2 m, višina 0,35 m","2 m × 0,2 m, višina 0,6 m"], e:"Gred je dolga 2 m, široka 0,2 m in visoka 0,35 m."},
+  {m:1, t:S5+" · Oprema", q:"Kolikšne so mere ovire za preskok?", o:["Višina 0,6 m, širina 1,2 m","Višina 0,8 m, širina 1,2 m","Višina 0,6 m, širina 2 m"], e:"Ovira za preskok je visoka 0,6 m in široka 1,2 m."},
   {t:S5+" · Oprema", q:"Kako je postavljena ovira z letvijo?", o:["Stebrička 1,2 m narazen, letev na višini 80 cm","Stebrička 2 m narazen, letev na višini 60 cm","Stebrička 1,2 m narazen, letev na višini 60 cm","Stebrička 1 m narazen, letev na višini 1 m"], e:"Dva stebrička 1,2 m narazen, letev na višini 80 cm (kot pri skoku v višino)."},
   {t:S5+" · Oprema", q:"Kako je pripravljena tlačna C-cev pri štafeti?", o:["Dvojno zvita, brez cevnega nosilca, spojki v smeri cilja","Dvojno zvita in speta s cevnim nosilcem","Enojno zvita, spojki proti startu"], e:"C-cev je dvojno zvita, brez cevnega nosilca, lahko se dotika tal, spojki sta obrnjeni v smeri cilja."},
   {t:S5+" · Oprema", q:"Kakšen trojak se uporablja pri štafeti?", o:["Trojak B/CBC s prehodno spojko B/C na vhodu","Trojak C/BCB brez prehodne spojke","Razdelilnik B/CC"], e:"Trojak B/CBC s prehodno spojko B/C na vhodu."},
   {t:S5+" · Oprema", q:"Kateri ročnik si tekmovalci predajajo?", o:["Navadni D ročnik","C ročnik","Štafetna palica"], e:"Predaja se navadni D ročnik."},
   {t:S5+" · Proga", q:"Na koliko delov je razdeljena proga 400 m?", o:["9","8","10","4"], e:"Proga je razdeljena na 9 delov: prva dva po 25 m, ostali po 50 m."},
-  {t:S5+" · Proga", q:"Kako dolga sta prvi in drugi del proge?", o:["Po 25 m","Po 50 m","Po 12,5 m"], e:"Prvi in drugi del sta dolga 25 m, ostalih sedem po 50 m."},
+  {m:1, t:S5+" · Proga", q:"Kako dolga sta prvi in drugi del proge?", o:["Po 25 m","Po 50 m","Po 12,5 m"], e:"Prvi in drugi del sta dolga 25 m, ostalih sedem po 50 m."},
   {t:S5+" · Proga", q:"Kako široka je proga?", o:["1,2 m","1 m","1,5 m","2 m"], e:"Proga je široka 1,2 m; tekmovalec je ne sme prestopiti z obema stopaloma."},
   {t:S5+" · Proga", q:"Kolikšno je območje predaje ročnika?", o:["5 m pred in 5 m za črto dela proge","10 m pred črto dela proge","2 m pred in 2 m za črto"], e:"Dodatna oznaka je 5 m pred in za označbo dela proge."},
-  {t:S5+" · Proga", q:"Na kateri razdalji od starta je gred?", o:["12,5 m","25 m","10 m","5 m"], e:"Gred je na sredini prvega dela, 12,5 m od starta; začetek in konec gredi sta označena s črto."},
-  {t:S5+" · Proga", q:"Na kateri razdalji je ovira za preskok?", o:["125 m","100 m","175 m","150 m"], e:"Ovira za preskok je na 125 m (4. del), obrnjena v smeri cilja."},
-  {t:S5+" · Proga", q:"Na kateri razdalji je ovira z letvijo?", o:["175 m","125 m","200 m","150 m"], e:"Ovira z letvijo je na 175 m (5. del)."},
-  {t:S5+" · Proga", q:"Na kateri razdalji je trojak?", o:["325 m","315 m","350 m","300 m"], e:"Trojak je na 325 m, C-cev 10 m prej (315 m)."},
+  {m:1, t:S5+" · Proga", q:"Na kateri razdalji od starta je gred?", o:["12,5 m","25 m","10 m","5 m"], e:"Gred je na sredini prvega dela, 12,5 m od starta; začetek in konec gredi sta označena s črto."},
+  {m:1, t:S5+" · Proga", q:"Na kateri razdalji je ovira za preskok?", o:["125 m","100 m","175 m","150 m"], e:"Ovira za preskok je na 125 m (4. del), obrnjena v smeri cilja."},
+  {m:1, t:S5+" · Proga", q:"Na kateri razdalji je ovira z letvijo?", o:["175 m","125 m","200 m","150 m"], e:"Ovira z letvijo je na 175 m (5. del)."},
+  {m:1, t:S5+" · Proga", q:"Na kateri razdalji je trojak?", o:["325 m","315 m","350 m","300 m"], e:"Trojak je na 325 m, C-cev 10 m prej (315 m)."},
   {t:S5+" · Proga", q:"Kako daleč pred trojakom je C-cev?", o:["10 m","5 m","15 m"], e:"C-cev je 10 m pred trojakom, torej na 315 m."},
   {t:S5+" · Proga", q:"Ali lahko organizator ovire razporedi drugače?", o:["Da, če o tem obvesti tekmovalce v razpisu","Ne, nikoli"], e:"Organizator lahko ovire razporedi drugače, a mora to navesti v razpisu."},
   {t:S5+" · Proga", q:"Kdo lahko izloči nevarne ovire?", o:["Tekmovalni odbor","Sodnik starter","Organizacijski odbor"], e:"Če so ovire nevarne, jih lahko izloči tekmovalni odbor."},
@@ -1004,7 +1016,7 @@ function genStafeta(){
   [["gred","Gred",["35 cm","20 cm","50 cm","60 cm"],"Gred: dolžina 2 m, širina 0,2 m, višina 0,35 m."],
    ["preskok","Ovira za preskok",["60 cm","80 cm","35 cm","100 cm"],"Ovira za preskok je visoka 0,6 m in široka 1,2 m."],
    ["letev","Ovira z letvijo",["80 cm","60 cm","100 cm","120 cm"],"Letev je na višini 80 cm, stebrička sta 1,2 m narazen."]].forEach(([k,n,o,e])=>{
-    out.push({t:S5+" · Oprema", q:`${n}: kolikšna je višina, označena z vprašajem?`, fig:obstacleSvg(k), o, e});
+    out.push({m:1, t:S5+" · Oprema", q:`${n}: kolikšna je višina, označena z vprašajem?`, fig:obstacleSvg(k), o, e});
   });
   out.push(gStafetaKaz(false), gStafetaKaz(false), gStafetaKaz(true));
   return out;
@@ -1021,7 +1033,7 @@ const P6 = [
   {t:S6+" · Oprema", q:"Kje stoji vedro na začetku vaje in kdo ga pripravi?", o:["Na startni črti, pripravijo ga tekmovalci sami","Ob prazni posodi, pripravi ga sodnik starter","V posodi z vodo, pripravi ga organizator"], e:"Vedro je na začetku postavljeno na startno črto, tekmovalci ga pripravijo sami."},
   {t:S6+" · Oprema", q:"S čim se izmeri količina prenesene vode?", o:["Z merilno letvijo v centimetrih","S tehtanjem posode","Z merilnim valjem v litrih"], e:"Uporablja se merilna letev, ki označuje mero v cm."},
   {t:S6+" · Prostor", q:"Kolikšen je tekmovalni prostor za štafeto s prenosom vode?", o:["15 × 10 m","12 × 15 m","20 × 10 m"], e:"Prostor meri 15 × 10 m; na vsaki strani je ena posoda."},
-  {t:S6+" · Prostor", q:"Kako široka je sredinska črta, ki prostor razmejuje na levi in desni del?", o:["5–10 cm","10–15 cm","2–5 cm"], e:"Vzdolž po sredini je 5–10 cm široka črta."},
+  {m:1, t:S6+" · Prostor", q:"Kako široka je sredinska črta, ki prostor razmejuje na levi in desni del?", o:["5–10 cm","10–15 cm","2–5 cm"], e:"Vzdolž po sredini je 5–10 cm široka črta."},
   {t:S6+" · Nastop", q:"Komu desetar pri prenosu vode najprej prijavi nastop in preda mapo s podatki?", o:["Sodniku starterju","GS","Sodniku S-2"], e:"D prijavi nastop in preda mapo sodniku starterju, ki dovoli pripravo opreme."},
   {t:S6+" · Nastop", q:"Kako se enota postavi pred startno črto?", o:["V kolono: D, S, St, N-1, N-2, V-1, V-2, C-1, C-2","V vrsto po treh skupinah","V dvostop"], e:"Pred startno črto se enota postavi v kolono po vrstnem redu D, S, St, N-1, N-2, V-1, V-2, C-1, C-2."},
   {t:S6+" · Nastop", q:"Kaj desetar poveljuje po poročilu predsedniku ocenjevalne komisije?", o:["»Mirno.«","»Na mesta.«","»Pozor – zdaj!«"], e:"Po opravljenem poročilu GS desetar poveljuje »Mirno.«"},
@@ -1106,7 +1118,7 @@ function gPrenosKaz(withB){
 
 function genPrenos(){
   const out = P6.slice();
-  out.push({t:S6+" · Prostor", q:"Kolikšna je razdalja med posodama, označena z vprašajem?", fig:prenosSvg({dist:true})+PRENOS_KEY, o:["15 m","10 m","12 m","20 m"], e:"Posodi sta 15 m narazen; prostor meri 15 × 10 m."});
+  out.push({m:1, t:S6+" · Prostor", q:"Kolikšna je razdalja med posodama, označena z vprašajem?", fig:prenosSvg({dist:true})+PRENOS_KEY, o:["15 m","10 m","12 m","20 m"], e:"Posodi sta 15 m narazen; prostor meri 15 × 10 m."});
   out.push({t:S6+" · Sodniki", q:"Kdo stoji na mestu, označenem z vprašajem?", fig:prenosSvg({mark:[60,158]})+PRENOS_KEY, o:["GS (predsednik ocenjevalne komisije)","Sodnik starter","Desetar","Nihče, tam je cilj"], e:"GS stoji levo od posode, v katero nalivajo (gledano s starta)."});
   out.push({t:S6+" · Sodniki", q:"Kdo stoji na mestu, označenem z vprašajem?", fig:prenosSvg({mark:[310,158]})+PRENOS_KEY, o:["Sodnik starter","GS (predsednik ocenjevalne komisije)","Desetar","Mentor"], e:"Sodnik starter stoji na startni črti, levo od posode, iz katere zajemajo vodo."});
   const ok = Math.random() < 0.5;
@@ -1153,9 +1165,9 @@ P4.push(
   {t:V+" · Oprema", q:"Kolikšen je volumen vedra pri vaji z vedrovko?", o:["10 l","5 l","3 l"], e:"6 veder volumna 10 l, v katerih je 5 l vode."},
   {t:V+" · Oprema", q:"Kakšne oblike je tarča pri vaji z vedrovko?", o:["Valjasta, 100 × 100 mm, prazna","Okrogla plošča, premer 20 cm","Kocka 10 cm, napolnjena s peskom"], e:"Tarče so valjaste, pločevinaste ali plastične, prazne, 100 × 100 mm."},
   {t:V+" · Prostor", q:"Koliko stez je na tekmovalnem prostoru in kako široke so?", o:["3 steze po 4 m","9 stez po 1,2 m","3 steze po 5 m"], e:"Prostor 12 × 15 m ima 3 dolžinske steze, široke po 4 m."},
-  {t:V+" · Prostor", q:"Na kateri razdalji od startne črte so vedrovke?", o:["10 m","12 m","15 m","5 m"], e:"Druga linija (vedrovke) je 10 m od startne črte."},
+  {m:1, t:V+" · Prostor", q:"Na kateri razdalji od startne črte so vedrovke?", o:["10 m","12 m","15 m","5 m"], e:"Druga linija (vedrovke) je 10 m od startne črte."},
   {t:V+" · Prostor", q:"Na kateri razdalji od startne črte je ognjena črta?", o:["12 m","10 m","15 m","8 m"], e:"Ognjena črta (tretja linija) je 12 m od startne črte."},
-  {t:V+" · Prostor", q:"Na kateri razdalji od startne črte so stojala s tarčami?", o:["15 m","12 m","20 m","10 m"], e:"Četrta linija s stojali in tarčami je 15 m od startne črte."},
+  {m:1, t:V+" · Prostor", q:"Na kateri razdalji od startne črte so stojala s tarčami?", o:["15 m","12 m","20 m","10 m"], e:"Četrta linija s stojali in tarčami je 15 m od startne črte."},
   {t:V+" · Prostor", q:"Kaj je postavljeno na startni črti?", o:["6 veder z oznako 5 l","3 vedrovke","Stojala s tarčami"], e:"Na startni črti je 6 veder z oznako 5 l; vodo nalijejo tekmovalci sami."},
   {t:V+" · Enota", q:"Kdo sestavlja 1. skupino pri vaji z vedrovko?", o:["D, N-1, N-2","S, V-1, V-2","St, C-1, C-2"], e:"1. skupina: D, N-1, N-2; 2.: S, V-1, V-2; 3.: St, C-1, C-2."},
   {t:V+" · Enota", q:"Kdo sestavlja 3. skupino pri vaji z vedrovko?", o:["St, C-1, C-2","S, V-1, V-2","D, N-1, N-2"], e:"3. skupina: St, C-1, C-2."},
@@ -1185,11 +1197,11 @@ P4.push(
 );
 P5.push(
   {t:S5+" · Enota", q:"Kakšna je obutev pri štafeti 400 m za pionirje?", o:["Športni copati","Gasilski škornji","Poljubna"], e:"Predpisana obutev so športni copati."},
-  {t:S5+" · Oprema", q:"Kolikšna je višina gredi?", o:["0,35 m","0,2 m","0,6 m"], e:"Gred: 2 m dolga, 0,2 m široka, 0,35 m visoka."},
-  {t:S5+" · Oprema", q:"Na kateri višini je letev pri oviri z letvijo za pionirje?", o:["80 cm","60 cm","1,2 m"], e:"Stebrička sta 1,2 m narazen, letev na višini 80 cm."},
+  {m:1, t:S5+" · Oprema", q:"Kolikšna je višina gredi?", o:["0,35 m","0,2 m","0,6 m"], e:"Gred: 2 m dolga, 0,2 m široka, 0,35 m visoka."},
+  {m:1, t:S5+" · Oprema", q:"Na kateri višini je letev pri oviri z letvijo za pionirje?", o:["80 cm","60 cm","1,2 m"], e:"Stebrička sta 1,2 m narazen, letev na višini 80 cm."},
   {t:S5+" · Oprema", q:"Ali se C cev pri štafeti lahko dotika tal in kako sta obrnjeni spojki?", o:["Lahko se dotika tal, spojki v smeri cilja","Ne sme se dotikati tal","Spojki proti startu"], e:"C cev je dvojno zvita, brez nosilca, lahko se dotika tal, spojki obrnjeni v smeri cilja."},
   {t:S5+" · Oprema", q:"Kaj je na vhodu trojaka pri štafeti?", o:["Prehodna spojka B/C","Zasun","Nič"], e:"Trojak B/CBC ima na vhodu prehodno spojko B/C."},
-  {t:S5+" · Proga", q:"Kako dolgi so deli proge od 3. do 9.?", o:["50 m","25 m","40 m"], e:"1. in 2. del sta po 25 m, ostali po 50 m."},
+  {m:1, t:S5+" · Proga", q:"Kako dolgi so deli proge od 3. do 9.?", o:["50 m","25 m","40 m"], e:"1. in 2. del sta po 25 m, ostali po 50 m."},
   {t:S5+" · Proga", q:"Kako je označen vsak del proge?", o:["S prečno črto","S stožcem","Z zastavico"], e:"Vsak del je označen s prečno črto; 5 m pred in za njo je območje predaje."},
   {t:S5+" · Proga", q:"Kaj mora biti označeno pri gredi?", o:["Začetek in konec gredi s črto","Samo sredina","Nič"], e:"Začetek in konec gredi morata biti označena s črto."},
   {t:S5+" · Proga", q:"Kako je obrnjena ovira za preskok?", o:["V smeri cilja","Proti startu","Vzporedno s progo"], e:"Ovira za preskok je prečno, obrnjena v smeri cilja."},
@@ -1224,7 +1236,7 @@ P6.push(
   {t:S6+" · Enota", q:"Kakšna obutev je predpisana pri štafeti s prenosom vode?", o:["Športni copati","Gumijasti škornji","Poljubna"], e:"Predpisana obutev so športni copati."},
   {t:S6+" · Oprema", q:"Iz česa je vedro pri prenosu vode?", o:["Plastično ali kovinsko z ročajem","Samo plastično","Platneno"], e:"Vedro 3 l, plastično ali kovinsko z ročajem."},
   {t:S6+" · Prostor", q:"Koliko posod je na tekmovalnem prostoru prenosa vode?", o:["Ena na vsaki strani (2)","Ena na sredini","3"], e:"Na vsaki strani je ena posoda."},
-  {t:S6+" · Prostor", q:"Koliko stez je pri prenosu vode in kako široke so?", o:["3 steze po 4 m","2 stezi po 5 m","9 stez po 1 m"], e:"3 dolžinske steze, široke po 4 m; po sredini je črta 5–10 cm."},
+  {m:1, t:S6+" · Prostor", q:"Koliko stez je pri prenosu vode in kako široke so?", o:["3 steze po 4 m","2 stezi po 5 m","9 stez po 1 m"], e:"3 dolžinske steze, široke po 4 m; po sredini je črta 5–10 cm."},
   {t:S6+" · Nastop", q:"Kdo dovoli pripravo opreme pri prenosu vode?", o:["Sodnik starter","GS","S-2"], e:"D prijavi nastop starterju, ki dovoli pripravo opreme."},
   {t:S6+" · Izvedba", q:"Kdo začne prenos vode?", o:["Desetar","Sel","C-2"], e:"Začne D, ki vzame vedro, zajame vodo in jo odnese."},
   {t:S6+" · Izvedba", q:"Kam se vrne tekmovalec po predaji vedra?", o:["Na konec kolone","Na začetek kolone","Ob prazno posodo"], e:"Po predaji se vrne na konec kolone."},
@@ -1306,9 +1318,9 @@ function gRazvr(final){
 
 function genRazvr(){
   const out = P7.slice();
-  out.push({t:S7+" · Prostor", q:"Kolikšna je dolžina, označena z vprašajem?", fig:razvrSvg({dist:"w"})+RAZVR_KEY, o:["20 m","15 m","10 m","25 m"], e:"Prostor za razvrščanje meri 10 × 20 m."});
-  out.push({t:S7+" · Prostor", q:"Kolikšna je širina, označena z vprašajem?", fig:razvrSvg({dist:"h"})+RAZVR_KEY, o:["10 m","20 m","5 m","12 m"], e:"Prostor za razvrščanje meri 10 × 20 m."});
-  out.push({t:S7+" · Prostor", q:"Kako široko je vstopno mesto, označeno z vprašajem?", fig:razvrSvg({dist:"e"})+RAZVR_KEY, o:["3 m","5 m","2 m","4 m"], e:"Vstopno mesto v prostor je široko 3 m."});
+  out.push({m:1, t:S7+" · Prostor", q:"Kolikšna je dolžina, označena z vprašajem?", fig:razvrSvg({dist:"w"})+RAZVR_KEY, o:["20 m","15 m","10 m","25 m"], e:"Prostor za razvrščanje meri 10 × 20 m."});
+  out.push({m:1, t:S7+" · Prostor", q:"Kolikšna je širina, označena z vprašajem?", fig:razvrSvg({dist:"h"})+RAZVR_KEY, o:["10 m","20 m","5 m","12 m"], e:"Prostor za razvrščanje meri 10 × 20 m."});
+  out.push({m:1, t:S7+" · Prostor", q:"Kako široko je vstopno mesto, označeno z vprašajem?", fig:razvrSvg({dist:"e"})+RAZVR_KEY, o:["3 m","5 m","2 m","4 m"], e:"Vstopno mesto v prostor je široko 3 m."});
   out.push({t:S7+" · Prostor", q:"Kdo stoji na označenem mestu?", fig:razvrSvg({mark:[174,170,22]})+RAZVR_KEY, o:["Ocenjevalna komisija (GS in S-1)","Mentor in desetar","Sodnik starter in časomerilec"], e:"Pri razvrščanju ocenjujeta dva sodnika: GS in S-1."});
   out.push({t:S7+" · Prostor", q:"Kdo stoji na označenem mestu pred enoto?", fig:razvrSvg({mark:[173,129,13]})+RAZVR_KEY, o:["Desetar","Sel","Strojnik","GS"], e:"Pred enoto stoji desetar (bela podlaga, poln črn krog)."});
   out.push(gRazvr(false), gRazvr(false), gRazvr(true));
@@ -1324,7 +1336,7 @@ const P8 = [
   {t:S8+" · Oprema", q:"Kakšna je rdeča letev, ki označuje startno linijo?", o:["Dolga 3 m, široka 10 cm, visoka 1,9 cm","Dolga 5 m, široka 10 cm, visoka 1,9 cm","Dolga 3 m, široka 5 cm, visoka 3 cm"], e:"Startna letev je 3 m × 10 cm × 1,9 cm."},
   {t:S8+" · Oprema", q:"Koliko tlačnih C cevi se uporablja za cevovod v prvem delu?", o:["4","3","5","6"], e:"4 tlačne C cevi, dvojno zvite, s cevnimi nosilci."},
   {t:S8+" · Oprema", q:"Kolikšen je vodni jarek?", o:["2 m širok in 1,8 m dolg","2 m širok in 2 m dolg","1,8 m širok in 1 m dolg"], e:"Vodni jarek je širok 2 m in dolg 1,8 m."},
-  {t:S8+" · Oprema", q:"Kolikšna je lesena ograja?", o:["Visoka 0,7 m, široka 2 m","Visoka 0,6 m, široka 1,2 m","Visoka 0,8 m, široka 2 m"], e:"Lesena ograja je visoka 0,7 m (deska 550 mm + 150 mm) in široka 2 m."},
+  {m:1, t:S8+" · Oprema", q:"Kolikšna je lesena ograja?", o:["Visoka 0,7 m, široka 2 m","Visoka 0,6 m, široka 1,2 m","Visoka 0,8 m, široka 2 m"], e:"Lesena ograja je visoka 0,7 m (deska 550 mm + 150 mm) in široka 2 m."},
   {t:S8+" · Oprema", q:"Kolikšen je rov?", o:["Dolg 6 m, širok 0,6 m, visok 0,8 m","Dolg 5 m, širok 0,8 m, visok 0,6 m","Dolg 6 m, širok 0,8 m, visok 1 m"], e:"Rov meri 6 × 0,6 × 0,8 m."},
   {t:S8+" · Oprema", q:"Kolikšen je zaboj za odlaganje cevnih nosilcev?", o:["0,6 × 0,4 × 0,3 m","0,5 × 0,5 × 0,3 m","0,8 × 0,4 × 0,4 m"], e:"Zaboj meri 0,6 × 0,4 × 0,3 m."},
   {t:S8+" · Oprema", q:"Koliko vode je v vedrovki pri vaji z ovirami za mladince?", o:["10 L, ob vedrovki še vedro z 10 L","5 L, ob vedrovki še vedro s 5 L","10 L, brez rezervnega vedra"], e:"2 vedrovki s po 10 L vode in 2 vedri s po 10 L vode."},
@@ -1339,14 +1351,14 @@ const P8 = [
   {t:S8+" · Oprema", q:"Kateri vozel NI med vozli pri vaji z ovirami za mladince?", o:["Ambulantni vozel","Jamborski vozel","Tesarski vozel","Tkalski vozel"], e:"Vozli: jamborski, tesarski, tkalski in navezava C cevi z ročnikom z zasunom."},
   {t:S8+" · Oprema", q:"Kakšne so vrvi za vezanje vozlov?", o:["3 vrvi Ø 8 mm dolge 2 m in reševalna vrv s karabinom Ø 10–12 mm","4 vrvi Ø 8 mm dolge 2 m","4 vrvi Ø 10 mm dolge 3 m"], e:"3 vrvi premera 8 mm in dolžine 2 m ter 1 reševalna vrv s karabinom premera 10–12 mm v torbici."},
   {t:S8+" · Oprema", q:"Kako širok pas mora biti označen na cevi in ročniku za navezavo ročnika?", o:["15 cm","10 cm","20 cm"], e:"Na cevi in ročniku je označen 15 cm pas, v katerem poteka navezava."},
-  {t:S8+" · Proga", q:"Kolikšna je tekmovalna proga za vajo z ovirami za mladince?", o:["5 m široka, 75 m dolga","4 m široka, 70 m dolga","5 m široka, 60 m dolga"], e:"Proga je široka 5 m in dolga 75 m; pred startom mora biti 5–10 m prostora za razvrstitev."},
+  {m:1, t:S8+" · Proga", q:"Kolikšna je tekmovalna proga za vajo z ovirami za mladince?", o:["5 m široka, 75 m dolga","4 m široka, 70 m dolga","5 m široka, 60 m dolga"], e:"Proga je široka 5 m in dolga 75 m; pred startom mora biti 5–10 m prostora za razvrstitev."},
   {t:S8+" · Proga", q:"Kje se konča prvi del proge?", o:["Na 60 m (oznaka na 59 m)","Na 50 m","Na 65 m"], e:"Prvi del: od starta do 60 m, na 59 m je oznaka na progi."},
   {t:S8+" · Proga", q:"Kje so položene C cevi pred startom?", o:["Levo od stabilne spojke, za startno črto","Desno od stabilne spojke, pred startno črto","Pri zaboju na 58 m"], e:"4 C cevi so levo od spojke za črto, razmik ne sme biti širši od širine cevi."},
-  {t:S8+" · Proga", q:"Na kateri razdalji od starta je vodni jarek?", o:["8 m","23 m","5 m","12 m"], e:"Vodni jarek je 8 m od startne črte."},
-  {t:S8+" · Proga", q:"Na kateri razdalji je lesena ograja?", o:["23 m","35 m","15 m","52 m"], e:"Lesena ograja je 23 m od startne črte."},
+  {m:1, t:S8+" · Proga", q:"Na kateri razdalji od starta je vodni jarek?", o:["8 m","23 m","5 m","12 m"], e:"Vodni jarek je 8 m od startne črte."},
+  {m:1, t:S8+" · Proga", q:"Na kateri razdalji je lesena ograja?", o:["23 m","35 m","15 m","52 m"], e:"Lesena ograja je 23 m od startne črte."},
   {t:S8+" · Proga", q:"Kje se začne rov?", o:["Na 35 m","Na 23 m","Na 41 m","Na 52 m"], e:"Rov se začne 35 m od startne črte."},
-  {t:S8+" · Proga", q:"Na kateri razdalji je gred?", o:["52 m","45 m","58 m","35 m"], e:"Gred je na 52 m; začetek in konec sta označena s črto."},
-  {t:S8+" · Proga", q:"Na kateri razdalji je zaboj za cevne nosilce?", o:["58 m","59 m","60 m","52 m"], e:"Zaboj je na 58 m, oznaka konca cevovoda na 59 m."},
+  {m:1, t:S8+" · Proga", q:"Na kateri razdalji je gred?", o:["52 m","45 m","58 m","35 m"], e:"Gred je na 52 m; začetek in konec sta označena s črto."},
+  {m:1, t:S8+" · Proga", q:"Na kateri razdalji je zaboj za cevne nosilce?", o:["58 m","59 m","60 m","52 m"], e:"Zaboj je na 58 m, oznaka konca cevovoda na 59 m."},
   {t:S8+" · Proga", q:"Kje sta vedrovki in tarči?", o:["Vedrovki na 60 m, letvi na 63 m, tarči na 65 m","Vedrovki na 63 m, tarči na 65 m","Vedrovki na 60 m, tarči na 70 m"], e:"Vedrovki na 60 m (1 m v notranjost), rdeči letvi na 63 m, tarči na 65 m."},
   {t:S8+" · Proga", q:"Kako širok je pas za desetarja med tarčama?", o:["80 cm","1 m","50 cm"], e:"Med tarčama je 80 cm pas za desetarja."},
   {t:S8+" · Proga", q:"Kateri del proge je od 65 do 70 m?", o:["Tretji del (orodje in vozli)","Drugi del (vedrovke)","Četrti del (zbor)"], e:"1. del 0–60 m, 2. del 60–65 m, 3. del 65–70 m, 4. del 70–75 m."},
@@ -1374,7 +1386,7 @@ const P8 = [
   {t:S8+" · Izvedba", q:"Ali sme GS pri preverjanju vozla spremeniti njegovo obliko?", o:["Ne","Da"], e:"GS pri preverjanju ne sme spremeniti oblike vozla."},
   {t:S8+" · Izvedba", q:"Kako se enota postavi v četrtem delu proge?", o:["V dvovrstni zbor v drži »mirno«, obrnjena proti startu","V kolono, obrnjena proti cilju","V vrsto, obrnjena proti komisiji"], e:"Prehod med stojaloma, dvovrstni zbor, drža mirno, obrnjeni proti startu."},
   {t:S8+" · Izvedba", q:"Kako tekmovalec 1 da znak za konec vaje?", o:["Z dvigom roke nad glavo","S klicem »Končano«","S piskom piščalke"], e:"D da znak za konec z dvigom roke nad glavo (pri elektronskem merjenju še udari tipko)."},
-  {t:S8+" · Merjenje", q:"Kje je tipka za zaustavitev časa pri elektronskem merjenju?", o:["Na 71 m, 2 m od levega roba","Na 75 m, na sredini","Na 65 m, med tarčama"], e:"Stojalo s tipko je na 71 m in 2 m od levega roba."},
+  {m:1, t:S8+" · Merjenje", q:"Kje je tipka za zaustavitev časa pri elektronskem merjenju?", o:["Na 71 m, 2 m od levega roba","Na 75 m, na sredini","Na 65 m, med tarčama"], e:"Stojalo s tipko je na 71 m in 2 m od levega roba."},
   {t:S8+" · Merjenje", q:"Kaj sledi, če desetar prehitro zaustavi čas?", o:["Nepravilno delo D in nepravilno delo tekmovalca, ki naloge ni opravil","Ponovitev vaje","Ni napaka"], e:"Prehitra zaustavitev: nepravilno delo D in tekmovalca, ki ni opravil naloge."},
   {t:S8+" · Ocenjevanje", q:"Koliko točk ima enota mladincev na začetku vaje z ovirami?", o:["1000, ne glede na starost","Odvisno od starosti enote","500"], e:"Vse enote imajo ne glede na starost 1000 točk."},
   {t:S8+" · Ocenjevanje", q:"Cev ostane zavita za več kot 360°. Kako se oceni?", o:["Zavita cev (za vsako cev posebej)","Ni napaka","Nepravilno delo"], e:"Zavita cev se oceni za vsako cev posebej."},
@@ -1406,8 +1418,8 @@ P8.push(
   {t:S8+" · Proga", q:"Kje je na progi oznaka, čez katero mora segati zadnja spojka?", o:["Na 59 m","Na 60 m","Na 58 m"], e:"Prvi del je do 60 m, na 59 m je oznaka; zadnja spojka mora segati čez 59 m."},
   {t:S8+" · Proga", q:"Kako sta vedrovki pomaknjeni od roba proge?", o:["1 m v notranjost","Na sam rob","2 m v notranjost"], e:"Vedrovki sta levo in desno, pomaknjeni 1 m v notranjost."},
   {t:S8+" · Proga", q:"Kako mora biti pripravljena D cev na vedrovki?", o:["Dvojno zvita v ležišču, ročnik prosto na vedrovki proti tarči","Razvlečena proti tarči","Ovita okoli telesa vedrovke"], e:"D cev je dvojno zvita v ležišču, D ročnik prosto položen in usmerjen proti tarči."},
-  {t:S8+" · Proga", q:"Na kateri razdalji sta rdeči letvi za merjenje s curkom?", o:["63 m","60 m","65 m"], e:"Vedrovki na 60 m, letvi na 63 m, tarči na 65 m."},
-  {t:S8+" · Proga", q:"Na kateri razdalji je plošča z odloženim orodjem pred stojalom?", o:["67 m","65 m","70 m"], e:"Pred stojalom za orodje je na 67 m plošča z orodjem."},
+  {m:1, t:S8+" · Proga", q:"Na kateri razdalji sta rdeči letvi za merjenje s curkom?", o:["63 m","60 m","65 m"], e:"Vedrovki na 60 m, letvi na 63 m, tarči na 65 m."},
+  {m:1, t:S8+" · Proga", q:"Na kateri razdalji je plošča z odloženim orodjem pred stojalom?", o:["67 m","65 m","70 m"], e:"Pred stojalom za orodje je na 67 m plošča z orodjem."},
   {t:S8+" · Proga", q:"Kje je četrti del proge?", o:["Od 70 do 75 m","Od 65 do 70 m","Od 60 do 65 m"], e:"4. del je 70–75 m; tam se enota postroji v drži mirno."},
   {t:S8+" · Proga", q:"Kaj sodnik pripravi pri odlaganju orodja?", o:["Zamenja vrstni red: 2 lažji in 2 težki orodji","Postavi orodje na police","Nič"], e:"Sodnik zamenja vrstni red slik – 2 lažji in 2 težki orodji."},
   {t:S8+" · Proga", q:"Kako visi reševalna vrv na stojalu za vozle?", o:["Prosto in se ne dotika tal","Navita na drog","Leži na tleh"], e:"Reševalna vrv prosto visi s stojala in se ne dotika tal."},
@@ -1537,13 +1549,13 @@ const P9 = [
   {t:S9+" · Oprema", q:"Kateri gasilnik se uporablja pri štafeti za mladince?", o:["Prazen S-6","Poln S-6","Prazen S-9","Prazen CO2-5"], e:"Uporablja se prazen gasilnik S-6."},
   {t:S9+" · Oprema", q:"Kateri ročnik si predajajo mladinci pri štafeti?", o:["Navadni C ročnik brez zasuna","C ročnik z zasunom","D ročnik"], e:"Predaja se navadni C ročnik brez zasuna (pri pionirjih D ročnik)."},
   {t:S9+" · Oprema", q:"Katera oprema je v devetem delu proge?", o:["2 C cevi brez nosilcev in trojak B/CBC","1 C cev s cevnim nosilcem in trojak","2 C cevi s cevnima nosilcema"], e:"Na 380 m sta 2 dvojno zviti C cevi brez nosilcev, desno od njih trojak B/CBC."},
-  {t:S9+" · Proga", q:"Na kateri razdalji je lesena lestev?", o:["20 m","12,5 m","25 m"], e:"Lestev je 20 m od starta; C ročnik je položen levo zadaj v podaljšku stojala lestve."},
+  {m:1, t:S9+" · Proga", q:"Na kateri razdalji je lesena lestev?", o:["20 m","12,5 m","25 m"], e:"Lestev je 20 m od starta; C ročnik je položen levo zadaj v podaljšku stojala lestve."},
   {t:S9+" · Proga", q:"Kje leži C ročnik na začetku štafete?", o:["Levo zadaj ob stojalu lestve","V roki tekmovalca 1 na startu","Na postavku na 75 m"], e:"Ročnik je na levi zadnji strani v podaljšku stojala lestve in se ga dotika."},
-  {t:S9+" · Proga", q:"Kje je C cev s cevnim nosilcem in kje postavek zanjo?", o:["Cev na 70 m, postavek na 75 m","Cev na 75 m, postavek na 80 m","Cev na 50 m, postavek na 70 m"], e:"V tretjem delu je C cev na 70 m, postavek za odlaganje na 75 m."},
-  {t:S9+" · Proga", q:"Na kateri razdalji je ovira z letvijo?", o:["175 m","125 m","225 m"], e:"Ovira z letvijo je na 175 m (5. del)."},
-  {t:S9+" · Proga", q:"Na kateri razdalji je ovira za preskok pri štafeti za mladince?", o:["225 m","125 m","175 m","275 m"], e:"Pri mladincih je ovira za preskok na 225 m (pri pionirjih na 125 m)."},
+  {m:1, t:S9+" · Proga", q:"Kje je C cev s cevnim nosilcem in kje postavek zanjo?", o:["Cev na 70 m, postavek na 75 m","Cev na 75 m, postavek na 80 m","Cev na 50 m, postavek na 70 m"], e:"V tretjem delu je C cev na 70 m, postavek za odlaganje na 75 m."},
+  {m:1, t:S9+" · Proga", q:"Na kateri razdalji je ovira z letvijo?", o:["175 m","125 m","225 m"], e:"Ovira z letvijo je na 175 m (5. del)."},
+  {m:1, t:S9+" · Proga", q:"Na kateri razdalji je ovira za preskok pri štafeti za mladince?", o:["225 m","125 m","175 m","275 m"], e:"Pri mladincih je ovira za preskok na 225 m (pri pionirjih na 125 m)."},
   {t:S9+" · Proga", q:"Kje sta gasilnik in postavek zanj?", o:["Gasilnik na 275 m, postavek na 280 m","Gasilnik na 280 m, postavek na 275 m","Gasilnik na 250 m, postavek na 275 m"], e:"Prazen S-6 je na 275 m, postavek na 280 m."},
-  {t:S9+" · Proga", q:"Na kateri razdalji sta C cevi in trojak?", o:["380 m","365 m","350 m","325 m"], e:"Na 380 m sta 2 C cevi brez nosilcev, desno od njiju trojak."},
+  {m:1, t:S9+" · Proga", q:"Na kateri razdalji sta C cevi in trojak?", o:["380 m","365 m","350 m","325 m"], e:"Na 380 m sta 2 C cevi brez nosilcev, desno od njiju trojak."},
   {t:S9+" · Proga", q:"Kakšen je dovoljen razmak med C cevmi in trojakom?", o:["Ena širina C cevi","10 cm","Pol metra"], e:"Trojak je desno od cevi, dovoljen razmak je ena širina C cevi; spojke so dvignjene od tal."},
   {t:S9+" · Predaja", q:"Do kod mora tekmovalec 9 prevzeti ročnik?", o:["Do 365 m (prvih 15 m)","Do 375 m","Do 380 m"], e:"V 9. delu je treba ročnik predati v prvih 15 m, do 365 m."},
   {t:S9+" · Predaja", q:"V katerem delu proge morajo ročnik predati na delih 2, 4 in 8?", o:["V prvi polovici dela","V zadnji polovici dela","Kjerkoli v delu"], e:"Na delih 2, 4 in 8 je predaja v prvi polovici proge (do 37,5 m, 125 m, 325 m)."},
@@ -1575,12 +1587,12 @@ P9.push(
   {t:S9+" · Enota", q:"Kakšna obutev je predpisana pri štafeti za mladince?", o:["Športni copati","Gasilski škornji","Poljubna"], e:"Športni copati; tekmovalci so brez čelade."},
   {t:S9+" · Oprema", q:"Koliko prečk ima lestev pri štafeti za mladince?", o:["4","5","3"], e:"Lesena lestev ima 4 prečke, visoka je 2 m, široka 1,2 m."},
   {t:S9+" · Oprema", q:"Kako debela sta lesena postavka?", o:["3 cm","5 cm","10 cm"], e:"Postavka sta 80 × 80 cm, debeline 3 cm."},
-  {t:S9+" · Oprema", q:"Na kateri višini je letev pri oviri z letvijo za mladince?", o:["80 cm","60 cm","1 m"], e:"Stebrička 1,2 m narazen, letev na 80 cm."},
-  {t:S9+" · Oprema", q:"Kakšna je višina ovire za preskok pri štafeti za mladince?", o:["0,6 m","0,8 m","0,7 m"], e:"Ovira za preskok je visoka 0,6 m in široka 1,2 m."},
+  {m:1, t:S9+" · Oprema", q:"Na kateri višini je letev pri oviri z letvijo za mladince?", o:["80 cm","60 cm","1 m"], e:"Stebrička 1,2 m narazen, letev na 80 cm."},
+  {m:1, t:S9+" · Oprema", q:"Kakšna je višina ovire za preskok pri štafeti za mladince?", o:["0,6 m","0,8 m","0,7 m"], e:"Ovira za preskok je visoka 0,6 m in široka 1,2 m."},
   {t:S9+" · Oprema", q:"Kakšni sta C cevi v devetem delu proge?", o:["Dvojno zviti, brez cevnih nosilcev, spojke dvignjene od tal","S cevnimi nosilci","Razvlečeni"], e:"Na 380 m sta 2 dvojno zviti C cevi brez nosilcev; spojke so dvignjene od tal."},
   {t:S9+" · Proga", q:"Na katerih delih proge je označena dolžina, do katere mora biti predan ročnik?", o:["2, 4, 8 in 9","1, 3, 5 in 7","Na vseh"], e:"Na delih 2, 4, 8 in 9 je označena dolžina predaje."},
-  {t:S9+" · Proga", q:"Na kateri razdalji od starta je C cev s cevnim nosilcem?", o:["70 m","75 m","50 m"], e:"V 3. delu je na 70 m dvojno zvita C cev, na 75 m postavek."},
-  {t:S9+" · Proga", q:"Na kateri razdalji je postavek za odlaganje gasilnika?", o:["280 m","275 m","300 m"], e:"Gasilnik S-6 je na 275 m, postavek na 280 m."},
+  {m:1, t:S9+" · Proga", q:"Na kateri razdalji od starta je C cev s cevnim nosilcem?", o:["70 m","75 m","50 m"], e:"V 3. delu je na 70 m dvojno zvita C cev, na 75 m postavek."},
+  {m:1, t:S9+" · Proga", q:"Na kateri razdalji je postavek za odlaganje gasilnika?", o:["280 m","275 m","300 m"], e:"Gasilnik S-6 je na 275 m, postavek na 280 m."},
   {t:S9+" · Proga", q:"Na kateri strani C cevi je trojak v devetem delu?", o:["Desno","Levo","Pred cevmi"], e:"Desno od cevi je trojak (razmak ena širina C cevi)."},
   {t:S9+" · Proga", q:"V katerih delih štafete za mladince ni ovir?", o:["2., 4. in 8.","1., 3. in 5.","6. in 7."], e:"Brez ovir so 2., 4. in 8. del."},
   {t:S9+" · Izvedba", q:"Kdo prijavi nastop GS pri štafeti za mladince?", o:["Tekmovalec 1","Tekmovalec 9","Mentor"], e:"Tekmovalec 1 prijavi nastop in razporedi tekmovalce v vrstnem redu 1–9."},
@@ -1671,8 +1683,8 @@ function genStafMl(){
     out.push({t:S9+" · Proga", q:"Kateri tekmovalec teče označeni del proge?", fig:trackSvg({seg:SEG[k]})+TRACK_KEY,
       o:[RUN9[k], ...near.map(x=>RUN9[x])], e:`${k+1}. del (${SEG[k][0]}–${SEG[k][1]} m): tekmovalec ${k+1} ${TASK9[k]}.`});
   });
-  out.push({t:S9+" · Oprema", q:"Lesena lestev: kolikšna je višina, označena z vprašajem?", fig:lestevSvg("h"), o:["2 m","1,8 m","2,5 m","1,5 m"], e:"Lestev je visoka 2 m in široka 1,2 m, ima 4 prečke."});
-  out.push({t:S9+" · Oprema", q:"Lesena lestev: kolikšna je širina, označena z vprašajem?", fig:lestevSvg("w"), o:["1,2 m","1 m","1,5 m","0,8 m"], e:"Lestev je široka 1,2 m in visoka 2 m."});
+  out.push({m:1, t:S9+" · Oprema", q:"Lesena lestev: kolikšna je višina, označena z vprašajem?", fig:lestevSvg("h"), o:["2 m","1,8 m","2,5 m","1,5 m"], e:"Lestev je visoka 2 m in široka 1,2 m, ima 4 prečke."});
+  out.push({m:1, t:S9+" · Oprema", q:"Lesena lestev: kolikšna je širina, označena z vprašajem?", fig:lestevSvg("w"), o:["1,2 m","1 m","1,5 m","0,8 m"], e:"Lestev je široka 1,2 m in visoka 2 m."});
   out.push(gStafMl(false), gStafMl(false), gStafMl(true));
   return out;
 }
@@ -1692,7 +1704,7 @@ const P10 = [
   {t:S10+" · Prostor", q:"Kje stoji hidrantni nastavek?", o:["Na sredini črte, ki označuje začetek prostora","Na črti 26 m","Na levem robu proge"], e:"H nastavek je že postavljen in pod tlakom, na sredini začetne črte."},
   {t:S10+" · Prostor", q:"Na kateri razdalji je črta, čez katero mora biti postavljen trojak?", o:["26 m","20 m","13 m","46 m"], e:"Trojak mora biti čez črto 26 m."},
   {t:S10+" · Prostor", q:"Na kateri razdalji je ognjena črta pri mokri vaji s hidrantom?", o:["46 m","26 m","54 m","40 m"], e:"Ognjena črta je na 46 m, tarči pa na 54 m."},
-  {t:S10+" · Prostor", q:"Na kateri razdalji sta tarči?", o:["54 m","46 m","60 m","50 m"], e:"Tarči sta na 54 m, 8 m druga od druge."},
+  {m:1, t:S10+" · Prostor", q:"Na kateri razdalji sta tarči?", o:["54 m","46 m","60 m","50 m"], e:"Tarči sta na 54 m, 8 m druga od druge."},
   {t:S10+" · Prostor", q:"Kje je označeno mesto spoja prve in druge C cevi dovodnega (tlačnega) voda?", o:["13 m od C izliva na H nastavku","20 m od starta","Na črti 26 m"], e:"Na 13 m od C izliva na H nastavku se označi spoj prve in druge C cevi dovodnega voda (od hidranta do trojaka); oznake niso zavezujoče."},
   {t:S10+" · Prostor", q:"Kaj sledi, če je cevni nosilec skrajšan?", o:["Diskvalifikacija","Nepravilno delo","Ni napaka"], e:"Skrajšan cevni nosilec pomeni diskvalifikacijo; na nosilcu tudi ne sme biti vozla."},
   {t:S10+" · Nastop", q:"Komu desetar prijavi nastop in preda mapo pri mokri vaji?", o:["S-3","GS","S-1"], e:"D prijavi nastop S-3, ki pregleda opremo in dovoli pripravo."},
@@ -1883,9 +1895,9 @@ function genHidrant(){
    [[26,46],"20 m","Od črte 26 m do ognjene črte na 46 m je 20 m.",["20 m","26 m","8 m","10 m"]],
    [[46,54],"8 m","Od ognjene črte (46 m) do tarč (54 m) je 8 m.",["8 m","10 m","5 m","13 m"]],
    [[0,13],"13 m","Spoj prve in druge tlačne C cevi je označen 13 m od C izliva.",["13 m","10 m","15 m","20 m"]]].forEach(([d,_,e,o])=>{
-    out.push({t:S10+" · Prostor", q:"Kolikšna je razdalja, označena z vprašajem?", fig:hidrantSvg({dist:d, labels:false})+HID_KEY, o, e});
+    out.push({m:1, t:S10+" · Prostor", q:"Kolikšna je razdalja, označena z vprašajem?", fig:hidrantSvg({dist:d, labels:false})+HID_KEY, o, e});
   });
-  out.push({t:S10+" · Prostor", q:"Kolikšen je razmak med tarčama, označen z vprašajem?", fig:hidrantSvg({targets:true})+HID_KEY, o:["8 m","10 m","5 m","6 m"], e:"Tarči sta 8 m narazen, prostor je širok 10 m."});
+  out.push({m:1, t:S10+" · Prostor", q:"Kolikšen je razmak med tarčama, označen z vprašajem?", fig:hidrantSvg({targets:true})+HID_KEY, o:["8 m","10 m","5 m","6 m"], e:"Tarči sta 8 m narazen, prostor je širok 10 m."});
   out.push(gHidKaz(false), gHidKaz(false), gHidKaz(true));
   return out;
 }
@@ -2052,9 +2064,9 @@ function genH7(){
   [[[0,26],"Trojak mora biti čez črto 26 m (2 B cevi po 15 m).",["26 m","30 m","20 m","13 m"]],
    [[0,13],"Spoj prve in druge B cevi je označen 13 m od B izliva.",["13 m","15 m","10 m","14,5 m"]],
    [[26,40.5],"Spoj prve in druge C cevi napadalnega cevovoda je 14,5 m od črte 26 m.",["14,5 m","13 m","15 m","20 m"]]].forEach(([d,e,o])=>{
-    out.push({t:S11+" · Prostor", q:"Kolikšna je razdalja, označena z vprašajem?", fig:hid7Svg({dist:d, labels:false})+H7_KEY, o, e});
+    out.push({m:1, t:S11+" · Prostor", q:"Kolikšna je razdalja, označena z vprašajem?", fig:hid7Svg({dist:d, labels:false})+H7_KEY, o, e});
   });
-  out.push({t:S11+" · Prostor", q:"Kolikšna je širina prostora, označena z vprašajem?", fig:hid7Svg({width:true})+H7_KEY, o:["10 m","8 m","12 m","5 m"], e:"Prostor meri 10 × 55 m."});
+  out.push({m:1, t:S11+" · Prostor", q:"Kolikšna je širina prostora, označena z vprašajem?", fig:hid7Svg({width:true})+H7_KEY, o:["10 m","8 m","12 m","5 m"], e:"Prostor meri 10 × 55 m."});
   out.push(gH7Kaz(false), gH7Kaz(false), gH7Kaz(true));
   return out;
 }
@@ -2064,24 +2076,24 @@ const S12 = "12 · Raznoterosti";
 const P12 = [
   {t:S12+" · Enota", q:"Za katero kategorijo je vaja raznoterosti s 7 tekmovalci?", o:["Starejši gasilci","Mladinci","Člani A"], e:"Vajo raznoterosti izvajajo starejši gasilci, 7 tekmovalcev (D, S, St, N-1, N-2, V-1, V-2)."},
   {t:S12+" · Elementi", q:"Iz katerih dveh elementov je sestavljena vaja raznoterosti?", o:["Hitro oblačenje (čelada in pas) in naloge v svojem polju","Polaganje cevovoda in razvrščanje","Štafeta in vezanje vozlov"], e:"Vsak tekmovalec opravi hitro oblačenje (čelada in gasilski pas) in nalogo v svojem polju."},
-  {t:S12+" · Oprema", q:"Kolikšna je gred pri vaji raznoterosti?", o:["6 m dolga, 0,25 m široka, 0,2 m visoka","2 m dolga, 0,2 m široka, 0,35 m visoka","6 m dolga, 0,2 m široka, 0,35 m visoka"], e:"Gred: dolžina 6 m, širina 0,25 m, višina 0,2 m (pri pionirjih in mladincih 2 m × 0,2 × 0,35 m)."},
+  {m:1, t:S12+" · Oprema", q:"Kolikšna je gred pri vaji raznoterosti?", o:["6 m dolga, 0,25 m široka, 0,2 m visoka","2 m dolga, 0,2 m široka, 0,35 m visoka","6 m dolga, 0,2 m široka, 0,35 m visoka"], e:"Gred: dolžina 6 m, širina 0,25 m, višina 0,2 m (pri pionirjih in mladincih 2 m × 0,2 × 0,35 m)."},
   {t:S12+" · Oprema", q:"Koliko stolov je pri vaji raznoterosti in čemu so namenjeni?", o:["7, na njih sta obešena čelada in pas","7, tekmovalci na njih sedijo pred startom","4, za odlaganje orodja"], e:"7 stolov na črti 5 m; na njih sta obešena čelada in pas, tekmovalci jih pripravijo sami."},
   {t:S12+" · Oprema", q:"Kakšen ročnik naveže V-1?", o:["Navadni C ročnik z zasunom","C ročnik brez zasuna","D ročnik"], e:"V-1 naveže tlačno C cev, speto z ročnikom z zasunom."},
   {t:S12+" · Oprema", q:"Kakšne so reševalne vrvi pri vaji raznoterosti?", o:["2 vrvi Ø 10–12 mm v torbici","1 vrv Ø 8 mm","4 vrvi Ø 8 mm dolge 2 m"], e:"2 reševalni vrvi premera 10–12 mm, v torbici."},
   {t:S12+" · Oprema", q:"Koliko vode je v vedru pri vaji raznoterosti?", o:["5 L v vedru volumna 10 L","10 L","3 L"], e:"Vedro volumna 10 L s 5 L vode; vedrovka je prazna, z gumijasto cevjo dolžine 2 m."},
   {t:S12+" · Prostor", q:"Kolikšen je tekmovalni prostor za vajo raznoterosti?", o:["14 × 22 m","10 × 22 m","14 × 15 m","12 × 20 m"], e:"Prostor 14 × 22 m, razdeljen na 7 dvometrskih polj."},
-  {t:S12+" · Prostor", q:"Kako široka so polja pri vaji raznoterosti?", o:["2 m","3 m","1,5 m"], e:"7 polj po 2 m = 14 m širine."},
+  {m:1, t:S12+" · Prostor", q:"Kako široka so polja pri vaji raznoterosti?", o:["2 m","3 m","1,5 m"], e:"7 polj po 2 m = 14 m širine."},
   {t:S12+" · Prostor", q:"Kako daleč od startne črte se začne prostor za opremljanje?", o:["4 m","3 m","5 m"], e:"Od startne črte do prostora za opremljanje so 4 m, prostor (pas) je širok 3 m."},
   {t:S12+" · Prostor", q:"Kako širok je pas za opremljanje?", o:["3 m","2 m","4 m"], e:"Za črto 4 m je 3 m širok pas, kjer se tekmovalci opremijo s čelado in pasom."},
-  {t:S12+" · Prostor", q:"Na kateri črti so postavljeni stoli?", o:["5 m","4 m","7 m"], e:"Stoli so na črti 5 m, orodje na črti 7 m, zaključna črta je na 22 m."},
-  {t:S12+" · Prostor", q:"Na kateri črti je postavljeno tekmovalno orodje?", o:["7 m","5 m","4 m","22 m"], e:"Orodje je na črti 7 m."},
+  {m:1, t:S12+" · Prostor", q:"Na kateri črti so postavljeni stoli?", o:["5 m","4 m","7 m"], e:"Stoli so na črti 5 m, orodje na črti 7 m, zaključna črta je na 22 m."},
+  {m:1, t:S12+" · Prostor", q:"Na kateri črti je postavljeno tekmovalno orodje?", o:["7 m","5 m","4 m","22 m"], e:"Orodje je na črti 7 m."},
   {t:S12+" · Polja", q:"V katerem polju je gred?", o:["V polju sela (3. polje)","V polju strojnika (2. polje)","V polju N-2 (5. polje)"], e:"3. polje (S): trojak na 7 m, gred na sredini med 7 m in 22 m, 3 m pred ciljem cevi."},
   {t:S12+" · Polja", q:"Kaj je v polju desetarja?", o:["Nič, polje je brez ovir","Gred","Hidrant"], e:"1. polje (D) je brez ovir; D gre do konca polja in se vsaj z eno nogo dotika črte."},
   {t:S12+" · Polja", q:"Kje je podzemni hidrant pri vaji raznoterosti?", o:["Na črti 22 m v polju strojnika","Na startni črti","Na črti 7 m v polju sela"], e:"2. polje (St): na 7 m ključ in H nastavek, na 22 m podzemni hidrant."},
   {t:S12+" · Polja", q:"Kako daleč pred stojalom s tarčo je ognjena črta v polju N-1?", o:["3 m","2 m","5 m"], e:"Vedrovka je pred črto, ki je 3 m pred stojalom s tarčo (na 22 m)."},
   {t:S12+" · Polja", q:"Kje se začne metrski pas za metanje cevi v polju N-2?", o:["8 m od startne črte, dolg 8 m","7 m od startne črte, dolg 10 m","10 m od startne črte, dolg 8 m"], e:"Metrski pas se začne 8 m od starta in je dolg 8 m."},
   {t:S12+" · Polja", q:"Kje stoji V-2 pri metu reševalne vrvi?", o:["Na prečni črti 8 m pred črto 22 m","Na črti 7 m","Ob krogu na 22 m"], e:"V-2 stoji na prečni črti 8 m pred 22 m in meče vrv v krog na 22 m."},
-  {t:S12+" · Polja", q:"Kolikšen je premer kroga, v katerega V-2 vrže reševalno vrv?", o:["1,5 m","1 m","2 m"], e:"Na 22 m je zarisan krog premera 1,5 m."},
+  {m:1, t:S12+" · Polja", q:"Kolikšen je premer kroga, v katerega V-2 vrže reševalno vrv?", o:["1,5 m","1 m","2 m"], e:"Na 22 m je zarisan krog premera 1,5 m."},
   {t:S12+" · Začetek", q:"Kako se določijo funkcije tekmovalcev pri vaji raznoterosti?", o:["Izžrebajo jih ali jih določi desetar","Po starosti","Po velikosti"], e:"Funkcije tekmovalci izžrebajo oziroma jih določi D."},
   {t:S12+" · Začetek", q:"Katero povelje izda desetar po odobritvi S-2?", o:["»Na svoja mesta.«","»Za orodjem zbor.«","»V dve vrsti – zbor!«"], e:"Po odobritvi S-2 D poveljuje »Na svoja mesta.«, po postavitvi »Mirno.« in poroča GS."},
   {t:S12+" · Začetek", q:"Kdo izda povelje za začetek vaje raznoterosti?", o:["GS: »Moje povelje velja: Pozor – zdaj!«","Desetar: »V napad!«","S-2: »Pričnite.«"], e:"GS: »Moje povelje bo glasilo: Pozor – zdaj!«, nato »Moje povelje velja: Pozor – zdaj!«"},
@@ -2113,7 +2125,7 @@ const P12 = [
 P12.push(
   {t:S12+" · Oprema", q:"Kateri ključ za spojke je pri vaji raznoterosti?", o:["Ključ ABC","Ključ C","Ključ B"], e:"Organizator zagotovi ključ za spojke ABC."},
   {t:S12+" · Oprema", q:"Kakšen hidrantni nastavek je pri vaji raznoterosti?", o:["B/B","C/C","A/BB"], e:"Hidrantni nastavek B/B na improviziranem podzemnem hidrantu."},
-  {t:S12+" · Oprema", q:"Kako visoka je gred pri vaji raznoterosti?", o:["0,2 m","0,35 m","0,5 m"], e:"Gred: 6 m dolga, 0,25 m široka, 0,2 m visoka."},
+  {m:1, t:S12+" · Oprema", q:"Kako visoka je gred pri vaji raznoterosti?", o:["0,2 m","0,35 m","0,5 m"], e:"Gred: 6 m dolga, 0,25 m široka, 0,2 m visoka."},
   {t:S12+" · Oprema", q:"Koliko C cevi je pri vaji raznoterosti in ali imajo nosilce?", o:["4, brez cevnih nosilcev","6, s cevnimi nosilci","2, s cevnimi nosilci"], e:"4 tlačne C cevi, dvojno zvite, brez cevnih nosilcev; tudi B cev je brez nosilca."},
   {t:S12+" · Oprema", q:"Kako dolga je gumijasta cev vedrovke pri vaji raznoterosti?", o:["2 m","3 m","1,5 m"], e:"Vedrovka z gumijasto cevjo dolžine 2 m."},
   {t:S12+" · Oprema", q:"Kako visoko je stojalo za vezanje vozlov pri vaji raznoterosti?", o:["2 m","1,5 m","1 m"], e:"Stojalo za vezanje vozlov je visoko 2 m."},
@@ -2126,7 +2138,7 @@ P12.push(
   {t:S12+" · Prostor", q:"Kje so v polju sela položene cevi?", o:["3 m pred ciljno črto","Na 7 m","Ob gredi"], e:"3 m pred ciljno črto so položene B in 2 C cevi, dvojno zvite, brez nosilcev."},
   {t:S12+" · Prostor", q:"Kako je pripravljena vedrovka v polju N-1?", o:["Brez vode, s cevjo enkrat ovito okoli telesa","Polna vode","Z razvito cevjo"], e:"Vedrovka je prazna, cev enkrat ovita okoli telesa; vedrovko in vedro pripravi tekmovalec sam."},
   {t:S12+" · Prostor", q:"Kako morata biti obrnjeni spojki C cevi v polju N-2?", o:["Obe v smeri napada","Proti startu","Ena proti drugi"], e:"Obe spojki morata biti obrnjeni v smeri napada; cev pripravi tekmovalec sam."},
-  {t:S12+" · Prostor", q:"Kako dolg je metrski pas za metanje C cevi v polju N-2?", o:["8 m","15 m","5 m"], e:"Metrsko območje je dolgo 8 m in se začne 8 m od startne črte."},
+  {m:1, t:S12+" · Prostor", q:"Kako dolg je metrski pas za metanje C cevi v polju N-2?", o:["8 m","15 m","5 m"], e:"Metrsko območje je dolgo 8 m in se začne 8 m od startne črte."},
   {t:S12+" · Prostor", q:"Kaj je pred stojalom za navezavo v polju V-1?", o:["Dvojno zvita C cev, speta z ročnikom z zasunom","Vedrovka","Trojak"], e:"Pred stojalom je C cev, speta z ročnikom z zasunom; na stojalu je reševalna vrv v torbici."},
   {t:S12+" · Prostor", q:"Kaj je na črti 7 m v polju V-2?", o:["Reševalna vrv zložena v torbici","C cev","Vedro"], e:"V polju V-2 je na 7 m reševalna vrv v torbici."},
   {t:S12+" · Začetek", q:"Komu desetar prijavi nastop pri vaji raznoterosti?", o:["S-2","GS","S-1"], e:"Nastop se prijavi S-2, ki odredi pripravo opreme."},
@@ -2240,9 +2252,9 @@ function genRazn(){
    [[4,7],"Pas za opremljanje je širok 3 m (od 4 do 7 m).",["3 m","2 m","4 m","1 m"]],
    [[0,22],"Prostor je dolg 22 m.",["22 m","20 m","15 m","25 m"]],
    [[14,22,6],"V-2 stoji 8 m pred črto 22 m.",["8 m","6 m","10 m","5 m"]]].forEach(([d,e,o])=>{
-    out.push({t:S12+" · Prostor", q:"Kolikšna je razdalja, označena z vprašajem?", fig:raznSvg({dist:d, labels:false})+RAZN_KEY, o, e});
+    out.push({m:1, t:S12+" · Prostor", q:"Kolikšna je razdalja, označena z vprašajem?", fig:raznSvg({dist:d, labels:false})+RAZN_KEY, o, e});
   });
-  out.push({t:S12+" · Prostor", q:"Kolikšna je širina prostora, označena z vprašajem?", fig:raznSvg({width:true})+RAZN_KEY, o:["14 m","10 m","12 m","7 m"], e:"7 polj po 2 m = 14 m."});
+  out.push({m:1, t:S12+" · Prostor", q:"Kolikšna je širina prostora, označena z vprašajem?", fig:raznSvg({width:true})+RAZN_KEY, o:["14 m","10 m","12 m","7 m"], e:"7 polj po 2 m = 14 m."});
   out.push(gRaznKaz(false), gRaznKaz(false), gRaznKaz(true));
   return out;
 }
@@ -2369,8 +2381,8 @@ function genRazn9(){
     const near=[i-1,i+1,i-2,i+2,i+3].filter(x=>x>=0&&x<9).slice(0,3);
     out.push({t:S13+" · Polja", q:"Čigavo polje je označeno?", fig:razn9Svg({lane:i})+R9_KEY, o:[R9LANE[i], ...near.map(x=>R9LANE[x])], e:`${i+1}. polje: ${R9LANE[i]} – ${R9TASK[i]}. Vrstni red: D, St, S, N-1, N-2, V-1, V-2, C-1, C-2.`});
   });
-  out.push({t:S13+" · Prostor", q:"Kolikšna je širina prostora, označena z vprašajem?", fig:razn9Svg({width:true})+R9_KEY, o:["18 m","14 m","20 m","16 m"], e:"9 polj po 2 m = 18 m."});
-  out.push({t:S13+" · Prostor", q:"Kolikšna je razdalja od gasilnikov do table s požarom, označena z vprašajem?", fig:razn9Svg({dist:[20,22]})+R9_KEY, o:["2 m","3 m","1 m","5 m"], e:"Gasilniki so na črti 2 m pred ciljno črto, kjer leži tabla s požarom."});
+  out.push({m:1, t:S13+" · Prostor", q:"Kolikšna je širina prostora, označena z vprašajem?", fig:razn9Svg({width:true})+R9_KEY, o:["18 m","14 m","20 m","16 m"], e:"9 polj po 2 m = 18 m."});
+  out.push({m:1, t:S13+" · Prostor", q:"Kolikšna je razdalja od gasilnikov do table s požarom, označena z vprašajem?", fig:razn9Svg({dist:[20,22]})+R9_KEY, o:["2 m","3 m","1 m","5 m"], e:"Gasilniki so na črti 2 m pred ciljno črto, kjer leži tabla s požarom."});
   out.push(gRazn9Kaz(false), gRazn9Kaz(false), gRazn9Kaz(true));
   return out;
 }
@@ -2433,9 +2445,9 @@ function gRazv9(){
 }
 function genRazv9(){
   const out = P14.slice();
-  out.push({t:S14+" · Prostor", q:"Kolikšna je dolžina prostora, označena z vprašajem?", fig:razv9Svg({dist:"w"})+RAZV9_KEY, o:["20 m","15 m","10 m","25 m"], e:"Prostor meri 10 × 20 m."});
-  out.push({t:S14+" · Prostor", q:"Kolikšna je širina prostora, označena z vprašajem?", fig:razv9Svg({dist:"h"})+RAZV9_KEY, o:["10 m","20 m","5 m","8 m"], e:"Prostor meri 10 × 20 m."});
-  out.push({t:S14+" · Prostor", q:"Kako široko je vstopno mesto, označeno z vprašajem?", fig:razv9Svg({dist:"e"})+RAZV9_KEY, o:["3 m","5 m","2 m","4 m"], e:"Vstopno mesto je široko 3 m."});
+  out.push({m:1, t:S14+" · Prostor", q:"Kolikšna je dolžina prostora, označena z vprašajem?", fig:razv9Svg({dist:"w"})+RAZV9_KEY, o:["20 m","15 m","10 m","25 m"], e:"Prostor meri 10 × 20 m."});
+  out.push({m:1, t:S14+" · Prostor", q:"Kolikšna je širina prostora, označena z vprašajem?", fig:razv9Svg({dist:"h"})+RAZV9_KEY, o:["10 m","20 m","5 m","8 m"], e:"Prostor meri 10 × 20 m."});
+  out.push({m:1, t:S14+" · Prostor", q:"Kako široko je vstopno mesto, označeno z vprašajem?", fig:razv9Svg({dist:"e"})+RAZV9_KEY, o:["3 m","5 m","2 m","4 m"], e:"Vstopno mesto je široko 3 m."});
   out.push({t:S14+" · Prostor", q:"Kdo stoji na označenem mestu?", fig:razv9Svg({mark:[164,140,18]})+RAZV9_KEY, o:["Ocenjevalna komisija (GS in S-1)","Desetar in sel","Sodnik starter in časomerilec"], e:"Razvrščanje ocenjujeta GS in S-1."});
   out.push(gRazv9(), gRazv9());
   return out;
@@ -2521,14 +2533,14 @@ const P16 = [
   {t:S16+" · Oprema", q:"Kakšni sta vezalna in ventilna vrv?", o:["Obe 8 mm, dolgi 15 m, v torbici","Obe 10 mm, dolgi 20 m","Vezalna 8 mm/15 m, ventilna 12 mm/10 m"], e:"Vezalna in ventilna vrv: premer 8 mm, dolžina 15 m, v torbici."},
   {t:S16+" · Oprema", q:"Kakšen mora biti sesalni koš?", o:["A, s povratnim ventilom in ločenim priključkom vezalne in ventilne vrvi","B, brez povratnega ventila","A, z enim priključkom za obe vrvi"], e:"Sesalni koš A s povratnim ventilom, ločen priključek za vezalno in ventilno vrv; obroč za vezalno vrv je fiksen, uho Ø 40 mm."},
   {t:S16+" · Oprema", q:"Koliko ključev za spojke ABC je pri vaji z MB?", o:["3","2","4"], e:"3 ključi za spojke ABC."},
-  {t:S16+" · Oprema", q:"Kolikšna je preproga pri vaji z MB?", o:["4 × 9 m","3 × 9 m","4 × 10 m"], e:"Preproga 4 × 9 m (opredeljeno v razpisu); rdeča letev za odvzem vode je 3 m × 10 cm."},
-  {t:S16+" · Prostor", q:"Kolikšna je proga za vajo z MB?", o:["10 × 70 m","10 × 55 m","10 × 60 m","5 × 70 m"], e:"Proga meri 10 × 70 m in se začne z letvijo za odvzem vode."},
-  {t:S16+" · Prostor", q:"Na kateri razdalji od letve je sesalno grlo MB?", o:["4,8 m","4 m","6 m","3 m"], e:"Sesalno grlo MB je 4,8 m od letve za odvzem vode."},
+  {m:1, t:S16+" · Oprema", q:"Kolikšna je preproga pri vaji z MB?", o:["4 × 9 m","3 × 9 m","4 × 10 m"], e:"Preproga 4 × 9 m (opredeljeno v razpisu); rdeča letev za odvzem vode je 3 m × 10 cm."},
+  {m:1, t:S16+" · Prostor", q:"Kolikšna je proga za vajo z MB?", o:["10 × 70 m","10 × 55 m","10 × 60 m","5 × 70 m"], e:"Proga meri 10 × 70 m in se začne z letvijo za odvzem vode."},
+  {m:1, t:S16+" · Prostor", q:"Na kateri razdalji od letve je sesalno grlo MB?", o:["4,8 m","4 m","6 m","3 m"], e:"Sesalno grlo MB je 4,8 m od letve za odvzem vode."},
   {t:S16+" · Prostor", q:"Na kateri razdalji je črta čez celotno progo, čez katero mora segati B vod?", o:["41 m","26 m","46 m"], e:"Na 41 m je črta čez progo; spojka druge B cevi mora v celoti ležati čez njo."},
   {t:S16+" · Prostor", q:"Kje je označen spoj prve in druge B cevi?", o:["18 m od B izliva","13 m od B izliva","20 m od B izliva"], e:"Spoj B cevi je 18 m od B izliva; oznaka ni zavezujoča."},
   {t:S16+" · Prostor", q:"Kje je označen spoj prve in druge C cevi napadalnega cevovoda pri vaji z MB?", o:["14,5 m od črte 41 m","13 m od črte 41 m","18 m od črte 41 m"], e:"Spoj prve in druge C cevi napadalnega cevovoda je označen 14,5 m od črte 41 m (oznaka ni zavezujoča)."},
   {t:S16+" · Prostor", q:"Kako stojijo tekmovalci prve in druge vrste ob začetni postavitvi?", o:["Prva vrsta s konicami prstov do črte, druga s peto do črte","Obe vrsti s peto do črte","Prva vrsta s peto, druga s prsti do črte"], e:"Prva vrsta s konicami prstov do črte, druga s peto do črte."},
-  {t:S16+" · Postavitev opreme", q:"Kolikšna je razdalja med sesalnim grlom MB in spojko sesalnega koša?", o:["50 cm","40 cm","90 cm"], e:"Med sesalnim grlom in spojko koša je 50 cm; spojka se dotika označene črte."},
+  {m:1, t:S16+" · Postavitev opreme", q:"Kolikšna je razdalja med sesalnim grlom MB in spojko sesalnega koša?", o:["50 cm","40 cm","90 cm"], e:"Med sesalnim grlom in spojko koša je 50 cm; spojka se dotika označene črte."},
   {t:S16+" · Postavitev opreme", q:"Kako daleč od namišljene sredine MB je prva položena sesalna cev in kolikšen je razmik med cevema?", o:["90 cm, razmik 40 cm","50 cm, razmik 40 cm","90 cm, razmik 30 cm"], e:"Prva sesalna cev je 90 cm levo in desno od sredine MB, razmik med sesalnima cevema 40 cm."},
   {t:S16+" · Postavitev opreme", q:"Kje ležita vrvi in kje ključa ob začetku?", o:["Vrvi levo od koša, 2 ključa desno, tretji pod sesalno odprtino MB","Vrvi desno, ključi levo","Vse na preprogi za MB"], e:"Vrvi levo od koša (dotikata se črte, ne ena na drugi), 2 ključa desno od koša, tretji pod sesalno odprtino MB."},
   {t:S16+" · Nastop", q:"Komu desetar pri vaji z MB prijavi nastop in preda mapo?", o:["S-4","S-3","GS"], e:"S-4 sprejme enoto, pregleda orodje in postavitev ter da D dovoljenje za postroj."},
@@ -2567,7 +2579,7 @@ const P16 = [
   {t:S16+" · Trojak", q:"Kdo upravlja trojak pri vaji z MB?", o:["C-1 (do njegovega prihoda lahko S)","Samo S","D"], e:"C-1 ali S stoji razkoračeno čez B cev za trojakom; S se umakne, ko pride C-1."},
   {t:S16+" · Trojak", q:"Kdaj C-1 sme zahtevati »Vodo daj!« od strojnika?", o:["Ko je B vod priključen in trojak zaseden","Takoj ob prihodu k trojaku","Ko N-1 zahteva prvo vodo"], e:"Šele ko je B vod priključen in trojak zaseden; prej je nepravilno delo."},
   {t:S16+" · Merjenje", q:"Kdo pri elektronskem merjenju pritisne tipko STOP?", o:["C-1, ko odpre oba ventila","GS","N-1"], e:"Ko C-1 odpre oba ventila, se nagne in pritisne STOP, nato zasede končni položaj (v 3 s)."},
-  {t:S16+" · Merjenje", q:"Kje je tipka STOP pri elektronskem merjenju?", o:["Na črti 41 m, 1,25 m levo od sredine","Pri MB","Na koncu proge"], e:"Tipka STOP je na 41 m, 1,25 m levo od namišljene sredine; tipki sta 1 m visoko."},
+  {m:1, t:S16+" · Merjenje", q:"Kje je tipka STOP pri elektronskem merjenju?", o:["Na črti 41 m, 1,25 m levo od sredine","Pri MB","Na koncu proge"], e:"Tipka STOP je na 41 m, 1,25 m levo od namišljene sredine; tipki sta 1 m visoko."},
   {t:S16+" · Merjenje", q:"Kdo pri elektronskem merjenju sproži start?", o:["GS s tipko za start","S-4","Desetar"], e:"GS položi roko na tipko za start in jo sproži ob startu; ročno merita S-1 in S-2."},
   {t:S16+" · Postavitev", q:"S čim je opremljen N-1 ob koncu vaje z MB?", o:["Z dvema cevnima nosilcema in cevnim pritrdilcem","Z enim cevnim nosilcem","S ključem za spojke"], e:"N-1: dva cevna nosilca (B in C) in pritrdilec; N-2 en nosilec."},
   {t:S16+" · Postavitev", q:"S čim je opremljen C-2 ob koncu vaje z MB?", o:["S torbico s cevnimi obvezami in ključem za spojke","S cevnim nosilcem","Z dvema ključema"], e:"C-2: torbica s cevnimi obvezami in en ključ; če stoji na B cevi, nepravilna postavitev."},
@@ -2871,7 +2883,7 @@ function genMB(){
    [[0,41],"Črta, čez katero mora segati B vod, je na 41 m.",["41 m","40 m","26 m","46 m"]],
    [[41,55.5],"Spoj prve in druge C cevi napadalnega cevovoda je 14,5 m od črte 41 m.",["14,5 m","13 m","18 m","15 m"]],
    [[0,70],"Proga je dolga 70 m.",["70 m","60 m","55 m","75 m"]]].forEach(([d,e,o])=>{
-    out.push({t:S16+" · Prostor", q:"Kolikšna je razdalja, označena z vprašajem?", fig:mbSvg({dist:d, labels:false})+MB_KEY, o, e});
+    out.push({m:1, t:S16+" · Prostor", q:"Kolikšna je razdalja, označena z vprašajem?", fig:mbSvg({dist:d, labels:false})+MB_KEY, o, e});
   });
   out.push(gMBKaz(false), gMBKaz(false), gMBKaz(true));
   return out;
@@ -2890,17 +2902,17 @@ const P17 = [
   {t:S17+" · Enota", q:"Tekmovalca v štafeti zamenjajo z rezervo. Kaj sledi?", o:["Diskvalifikacija","Napaka, vaja se nadaljuje","Ni napaka"], e:"Sodniki tekmovalce ponovno preverijo po seznamu komisije A; zamenjava z rezervo pomeni DSQ."},
   {t:S17+" · Enota", q:"Po katerem seznamu sodniki pred štafeto ponovno preverijo tekmovalce?", o:["Po seznamu komisije A","Po seznamu komisije B","Po seznamu iz Vulkana"], e:"Sodniki tekmovalce ponovno preverijo po seznamu komisije A."},
   {t:S17+" · Oprema", q:"Kateri ročnik si predajajo tekmovalci v štafeti za člane?", o:["Navadni C ročnik brez zasuna","D ročnik","C ročnik z zasunom"], e:"Organizator zagotovi navadni C ročnik brez zasuna."},
-  {t:S17+" · Oprema", q:"Kako dolg je rov?", o:["8 m (±0,1 m)","6 m","10 m","5 m"], e:"Okrogel rov je dolg 8 m (±0,1 m)."},
-  {t:S17+" · Oprema", q:"Kolikšen je premer rova?", o:["70–80 cm","60–70 cm","80–90 cm","100 cm"], e:"Rov ima premer 70–80 cm."},
+  {m:1, t:S17+" · Oprema", q:"Kako dolg je rov?", o:["8 m (±0,1 m)","6 m","10 m","5 m"], e:"Okrogel rov je dolg 8 m (±0,1 m)."},
+  {m:1, t:S17+" · Oprema", q:"Kolikšen je premer rova?", o:["70–80 cm","60–70 cm","80–90 cm","100 cm"], e:"Rov ima premer 70–80 cm."},
   {t:S17+" · Oprema", q:"Iz česa je lahko izdelan rov?", o:["Iz lesa, plastike ali kovine","Samo iz kovine","Iz platna"], e:"Rov je iz lesa, plastike ali kovine; stran vstopa mora biti zaščitena."},
-  {t:S17+" · Oprema", q:"Kako visoko mora biti dvignjen najnižji del rova (na pripravah za olimpijado)?", o:["Najmanj 15 cm, največ 20 cm","Največ 10 cm","30 cm","Leži na tleh"], e:"Najnižji del rova je dvignjen 15–20 cm nad progo – samo na pripravah enot za olimpijado."},
+  {m:1, t:S17+" · Oprema", q:"Kako visoko mora biti dvignjen najnižji del rova (na pripravah za olimpijado)?", o:["Najmanj 15 cm, največ 20 cm","Največ 10 cm","30 cm","Leži na tleh"], e:"Najnižji del rova je dvignjen 15–20 cm nad progo – samo na pripravah enot za olimpijado."},
   {t:S17+" · Oprema", q:"Kaj mora biti pri rovu zaščiteno?", o:["Stran vstopa","Izhodna stran","Notranja tla"], e:"Stran vstopa mora biti zaščitena (obložena)."},
-  {t:S17+" · Oprema", q:"Kolikšna je lesena ovira?", o:["1,5 m visoka in 1,2 m široka","2 m visoka in 1 m široka","1,2 m visoka in 1,5 m široka"], e:"Lesena ovira je visoka 1,5 m in široka 1,2 m."},
-  {t:S17+" · Oprema", q:"Kako dolga je opora (podstavek) lesene ovire?", o:["2800 mm","1500 mm","1200 mm"], e:"Po sliki je opora lesene ovire dolga 2800 mm."},
-  {t:S17+" · Oprema", q:"Kolikšna je gred pri štafeti za člane?", o:["6 m dolga, 0,2 m široka, 0,6 m visoka","2 m dolga, 0,2 m široka, 0,35 m visoka","6 m dolga, 0,25 m široka, 0,2 m visoka"], e:"Gred: dolžina 6 m, širina 0,2 m, višina 0,6 m."},
+  {m:1, t:S17+" · Oprema", q:"Kolikšna je lesena ovira?", o:["1,5 m visoka in 1,2 m široka","2 m visoka in 1 m široka","1,2 m visoka in 1,5 m široka"], e:"Lesena ovira je visoka 1,5 m in široka 1,2 m."},
+  {m:1, t:S17+" · Oprema", q:"Kako dolga je opora (podstavek) lesene ovire?", o:["2800 mm","1500 mm","1200 mm"], e:"Po sliki je opora lesene ovire dolga 2800 mm."},
+  {m:1, t:S17+" · Oprema", q:"Kolikšna je gred pri štafeti za člane?", o:["6 m dolga, 0,2 m široka, 0,6 m visoka","2 m dolga, 0,2 m široka, 0,35 m visoka","6 m dolga, 0,25 m široka, 0,2 m visoka"], e:"Gred: dolžina 6 m, širina 0,2 m, višina 0,6 m."},
   {t:S17+" · Oprema", q:"Koliko gredi je na progi?", o:["1 ali 2, odvisno od kategorije","Vedno 1","Vedno 2"], e:"1 gred pri članih, 2 gredi pri članicah."},
   {t:S17+" · Proga", q:"Na koliko delov je razdeljena proga 400 m za člane?", o:["8","9","4","10"], e:"Proga je razdeljena na 8 delov po 50 m."},
-  {t:S17+" · Proga", q:"Kako dolg je posamezen del proge pri štafeti za člane?", o:["50 m","25 m","40 m"], e:"400 m / 8 delov = 50 m."},
+  {m:1, t:S17+" · Proga", q:"Kako dolg je posamezen del proge pri štafeti za člane?", o:["50 m","25 m","40 m"], e:"400 m / 8 delov = 50 m."},
   {t:S17+" · Proga", q:"Kako široka je proga najmanj?", o:["1,2 m","1 m","1,5 m"], e:"Širina proge je najmanj 1,2 m."},
   {t:S17+" · Proga", q:"Kolikšno je območje predaje ročnika?", o:["5 m pred in 5 m za oznako dela proge","10 m za oznako","2 m pred in za oznako"], e:"Vsak del je označen, 5 m pred in 5 m za oznako je območje predaje."},
   {t:S17+" · Proga", q:"Koliko prog mora biti najmanj zagotovljenih?", o:["2 (člani in članice)","1","3"], e:"Najmanj 2 progi; na manjših tekmovanjih je lahko ena, prilagojena."},
@@ -3046,13 +3058,13 @@ function genSt14(){
   });
   shuffle([1,2,3,4,5,6,7]).slice(0,2).forEach(k=>{
     const opts=[k*50, ...shuffle([25,50,100,150,200,250,300,350,375].filter(v=>v!==k*50)).slice(0,3)];
-    out.push({t:S17+" · Proga", q:"Na kateri razdalji od starta je označeno mesto predaje?", fig:st14Svg({mark:k*50})+ST14_KEY,
+    out.push({m:1, t:S17+" · Proga", q:"Na kateri razdalji od starta je označeno mesto predaje?", fig:st14Svg({mark:k*50})+ST14_KEY,
       o:opts.map(v=>v+" m"), e:`Predaje so na vsakih 50 m: ${k}. predaja je na ${k*50} m (območje 5 m pred in za oznako).`});
   });
   [["les","Lesena ovira",["1,5 m","1,2 m","2 m","0,6 m"],"Lesena ovira je visoka 1,5 m (1500 mm) in široka 1,2 m."],
    ["gred","Gred",["0,6 m","0,35 m","0,2 m","1 m"],"Gred za člane: 6 m dolga, 0,2 m široka, 0,6 m visoka."],
    ["rov","Rov – premer",["70–80 cm","15–20 cm","60 cm","100 cm"],"Rov: dolžina 8 m (±0,1 m), premer 70–80 cm, dvignjen 15–20 cm (le na pripravah za olimpijado)."]].forEach(([k,n,o,e])=>{
-    out.push({t:S17+" · Oprema", q:`${n}: kolikšna je mera, označena z vprašajem?`, fig:ob14Svg(k), o, e});
+    out.push({m:1, t:S17+" · Oprema", q:`${n}: kolikšna je mera, označena z vprašajem?`, fig:ob14Svg(k), o, e});
   });
   out.push(gSt14Kaz(false), gSt14Kaz(false), gSt14Kaz(true));
   return out;
@@ -3073,14 +3085,14 @@ const P18 = [
   {t:S18+" · Oprema", q:"Kakšen je premer ušesa na obroču za vezalno vrv na sesalnem košu?", o:["40 mm","30 mm","50 mm"], e:"Obroč za vezalno vrv je fiksen, uho ima premer 40 mm."},
   {t:S18+" · Oprema", q:"Ali se pri SSV uporabljajo tlačne cevi?", o:["Ne, le sesalni vod","Da, 2 B cevi","Da, 6 C cevi"], e:"Pri SSV ni tlačnih cevi, trojaka in ročnikov – vaja se konča s priključitvijo sesalnega voda na MB."},
   {t:S18+" · Prostor", q:"Kakšen je tekmovalni prostor za SSV?", o:["Ravna površina v pokritem prostoru, proga 5 × 10 m","Travnata proga 10 × 70 m","Tartan 10 × 55 m"], e:"Proga 5 × 10 m, ravna površina v pokritem prostoru; najmanj 2 progi."},
-  {t:S18+" · Prostor", q:"Kolikšna je preproga pri SSV?", o:["4 × 9 m","5 × 10 m","3 × 8 m"], e:"Preproga 4 × 9 m (opredeljena v razpisu)."},
-  {t:S18+" · Prostor", q:"Na kateri razdalji od letve je sesalno grlo MB?", o:["4,8 m","4,1 m","5 m","8,25 m"], e:"Sesalno grlo MB je na 4,8 m od rdeče letve."},
-  {t:S18+" · Prostor", q:"Na kateri razdalji je črta za končno postavitev enote?", o:["8,25 m","4,8 m","9 m","7 m"], e:"Na 8,25 m je prečna črta za postavitev enote na koncu – to je dodatna črta na preprogi."},
+  {m:1, t:S18+" · Prostor", q:"Kolikšna je preproga pri SSV?", o:["4 × 9 m","5 × 10 m","3 × 8 m"], e:"Preproga 4 × 9 m (opredeljena v razpisu)."},
+  {m:1, t:S18+" · Prostor", q:"Na kateri razdalji od letve je sesalno grlo MB?", o:["4,8 m","4,1 m","5 m","8,25 m"], e:"Sesalno grlo MB je na 4,8 m od rdeče letve."},
+  {m:1, t:S18+" · Prostor", q:"Na kateri razdalji je črta za končno postavitev enote?", o:["8,25 m","4,8 m","9 m","7 m"], e:"Na 8,25 m je prečna črta za postavitev enote na koncu – to je dodatna črta na preprogi."},
   {t:S18+" · Prostor", q:"Koliko prog mora biti najmanj pri SSV?", o:["2","1","4"], e:"Najmanj 2 progi; na prostoru mora biti postavljena elektronska merilna naprava."},
   {t:S18+" · Nastop", q:"Komu desetar pri SSV prijavi nastop in preda mapo?", o:["S-1","GS","S-4"], e:"D prijavi nastop S-1, ki da dovoljenje za pripravo opreme."},
   {t:S18+" · Nastop", q:"Koliko časa ima enota za pripravo opreme pri SSV?", o:["Največ 1 minuto","Največ 3 minute","Ni omejeno"], e:"Priprava opreme traja največ 1 min; če čas prekoračijo, ne morejo nadaljevati z vajo."},
   {t:S18+" · Nastop", q:"Enota prekorači čas za pripravo opreme. Kaj sledi?", o:["Ne more nadaljevati z vajo","Napaka, vaja se nadaljuje","Dobi dodatno minuto"], e:"Če prekoračijo 1 min, ne morejo nadaljevati."},
-  {t:S18+" · Nastop", q:"Kolikšna je razdalja med sesalnim grlom MB in spojko sesalnega koša ob postavitvi?", o:["50 cm","40 cm","90 cm"], e:"Med grlom in spojko koša je 50 cm; spojka se dotika označene črte."},
+  {m:1, t:S18+" · Nastop", q:"Kolikšna je razdalja med sesalnim grlom MB in spojko sesalnega koša ob postavitvi?", o:["50 cm","40 cm","90 cm"], e:"Med grlom in spojko koša je 50 cm; spojka se dotika označene črte."},
   {t:S18+" · Nastop", q:"Kako daleč od namišljene sredine MB je prva sesalna cev?", o:["90 cm","40 cm","50 cm","130 cm"], e:"Prva cev je 90 cm levo in desno od sredine MB, razmik med cevema 40 cm."},
   {t:S18+" · Nastop", q:"Kolikšen je razmik med sesalnima cevema na isti strani MB?", o:["40 cm","90 cm","50 cm"], e:"Razdalja med sesalnima cevema je 40 cm."},
   {t:S18+" · Nastop", q:"Kje ležita vrvi ob začetni postavitvi?", o:["Levo od sesalnega koša, dotikata se črte, ne ena na drugi","Desno od koša","Pod MB"], e:"Vrvi ležita levo od koša, se dotikata črte in ne ležita ena na drugi."},
@@ -3220,7 +3232,7 @@ function genSSV(){
     ["cev2","Razdalja med sesalnima cevema",["40 cm","90 cm","50 cm","30 cm"],"Med sesalnima cevema je 40 cm."],
     ["sirina","Širina preproge",["4 m","3 m","5 m","10 m"],"Preproga je široka 4 m (proga 5 × 10 m)."],
     ["letev","Dolžina rdeče letve",["3 m","4 m","2 m","1,5 m"],"Rdeča letev je dolga 3 m in široka 10 cm."]];
-  shuffle(D).slice(0,3).forEach(([d,n,o,e])=> out.push({t:S18+" · Preproga", q:`${n}: kolikšna je mera, označena z vprašajem?`, fig:ssvSvg({dim:d})+SSV_KEY, o, e}));
+  shuffle(D).slice(0,3).forEach(([d,n,o,e])=> out.push({m:1, t:S18+" · Preproga", q:`${n}: kolikšna je mera, označena z vprašajem?`, fig:ssvSvg({dim:d})+SSV_KEY, o, e}));
   out.push(gSSVKaz(false), gSSVKaz(false), gSSVKaz(true));
   return out;
 }
@@ -3237,7 +3249,7 @@ const P19 = [
   {t:S19+" · Oprema", q:"Ali se sme med vajo v bazen dolivati vodo?", o:["Ne","Da","Le po »Končano«"], e:"Pred izvedbo je bazen poln; med vajo se vode ne sme dolivati."},
   {t:S19+" · Oprema", q:"Koliko gasilskih sekir zagotovi organizator?", o:["2","1","3"], e:"2 gasilski sekiri – vsaka leži na sredini vhoda v prostor (58 m)."},
   {t:S19+" · Oprema", q:"Kakšna je lesena lestev za napadalca?", o:["4 prečke, visoka 2 m, široka 1,2 m","5 prečk, visoka 2,5 m","3 prečke, visoka 1,5 m"], e:"Lesena lestev s 4 prečkami, višine 2 m in širine 1,2 m."},
-  {t:S19+" · Oprema", q:"Kako visoka je samostoječa A-lestev?", o:["2,5–3 m","2 m","3,5–4 m"], e:"Samostoječa A-lestev je visoka 2,5–3 m."},
+  {m:1, t:S19+" · Oprema", q:"Kako visoka je samostoječa A-lestev?", o:["2,5–3 m","2 m","3,5–4 m"], e:"Samostoječa A-lestev je visoka 2,5–3 m."},
   {t:S19+" · Oprema", q:"Kolikšno je stojalo za vezanje vozlov pri taktični vaji?", o:["2 m visoko in 2 m široko","1,5 m visoko","2 m visoko in 1 m široko"], e:"Stojalo za vezanje: 2 × 2 m."},
   {t:S19+" · Oprema", q:"Kakšni sta reševalni vrvi pri taktični vaji?", o:["Brez karabina, premer 10–12 mm","S karabinom, 8 mm","Brez karabina, 8 mm"], e:"2 reševalni vrvi brez karabina, premera 10–12 mm; na stojalu sta pritrjeni, prosti konec si tekmovalec nastavi sam."},
   {t:S19+" · Oprema", q:"Katere gasilnike zagotovi organizator za taktično vajo?", o:["1 S-6, 2 CO2-5 in 1 V-9 (ali vedrovka)","2 S-6 in 2 CO2","4 S-9"], e:"1 gasilnik S-6, 2 gasilnika CO2-5 in 1 gasilnik na vodo V-9 ali vedrovka."},
@@ -3250,21 +3262,21 @@ const P19 = [
   {t:S19+" · Oprema", q:"Koliko cevnih pritrdilcev ima enota pri taktični vaji?", o:["3","2","1"], e:"3 cevni pritrdilci (N-1, V-1, C-1)."},
   {t:S19+" · Oprema", q:"Koliko ključev za spojke ABC ima enota pri taktični vaji?", o:["3","2","4"], e:"3 ključi za spojke ABC."},
   /* Prostor */
-  {t:S19+" · Prostor", q:"Kolikšna je proga za taktično mokro vajo?", o:["10 × 72 m","10 × 70 m","10 × 55 m"], e:"Proga 10 × 72 m; priporoča se asfalt."},
+  {m:1, t:S19+" · Prostor", q:"Kolikšna je proga za taktično mokro vajo?", o:["10 × 72 m","10 × 70 m","10 × 55 m"], e:"Proga 10 × 72 m; priporoča se asfalt."},
   {t:S19+" · Prostor", q:"S čim se začne proga za taktično mokro vajo?", o:["Z robom bazena","Z rdečo letvijo","S startno črto"], e:"Proga se začne z robom bazena."},
   {t:S19+" · Prostor", q:"Kakšna podlaga se priporoča za taktično mokro vajo?", o:["Asfalt","Trava","Pesek"], e:"Priporoča se asfalt."},
   {t:S19+" · Prostor", q:"Kje je označeno mesto prvega spoja B cevi?", o:["18 m od izliva MB (ni zavezujoče)","20 m od bazena","Na 41 m"], e:"Na 18 m od izliva MB je označeno mesto prvega spoja; oznaka ni zavezujoča."},
-  {t:S19+" · Prostor", q:"Na kateri razdalji ležita sekiri?", o:["58 m","59 m","62 m","41 m"], e:"Na 58 m ležita sekiri, vsaka na sredini vhoda v prostor."},
-  {t:S19+" · Prostor", q:"Na kateri razdalji se začne ovira za vhod v prostor?", o:["59 m","58 m","62 m","65 m"], e:"Na 59 m se začne ovira za vhod v prostor."},
+  {m:1, t:S19+" · Prostor", q:"Na kateri razdalji ležita sekiri?", o:["58 m","59 m","62 m","41 m"], e:"Na 58 m ležita sekiri, vsaka na sredini vhoda v prostor."},
+  {m:1, t:S19+" · Prostor", q:"Na kateri razdalji se začne ovira za vhod v prostor?", o:["59 m","58 m","62 m","65 m"], e:"Na 59 m se začne ovira za vhod v prostor."},
   {t:S19+" · Prostor", q:"Kateri prostor je namenjen napadalcema?", o:["Prostor A na levi strani","Prostor B na desni strani","Prostor C na sredini"], e:"Prostor A (levo) je za napadalca, prostor B (desno) za vodarja."},
   {t:S19+" · Prostor", q:"Kateri prostor je namenjen vodarjema?", o:["Prostor B na desni strani","Prostor A na levi strani","Prostor C na sredini"], e:"Vodarja vstopata v prostor B na desni."},
   {t:S19+" · Prostor", q:"Kaj označujeta črti 30 cm levo in desno pred oviro za vhod?", o:["Vhod v prostor (dolgi 2 m, široki 5–10 cm)","Ognjeno črto","Mesto za sekiro"], e:"Pred oviro se 30 cm levo in desno zarišeta 5–10 cm široki črti v dolžini 2 m – nakazujeta vhod v prostor."},
   {t:S19+" · Prostor", q:"Na kateri razdalji je ognjena črta pri taktični vaji?", o:["62 m","59 m","65 m","46 m"], e:"Ognjena črta je na 62 m."},
   {t:S19+" · Prostor", q:"Kaj je na razdalji 65 m?", o:["Lesena lestev (napadalca) in A-lestev (vodarja)","Stojalo za vozle","Tarči"], e:"Na 65 m sta lestev s 4 prečkami za napadalca in A-lestev za vodarja."},
   {t:S19+" · Prostor", q:"Kaj je na razdalji 69 m?", o:["Stojalo za vezanje vozlov in table za gasilnike","Tarči","Lestvi"], e:"Na 69 m je stojalo za vezanje vozlov in table za postavitev gasilnikov."},
-  {t:S19+" · Prostor", q:"Na kateri razdalji sta tarči pri taktični vaji?", o:["72 m","69 m","62 m","70 m"], e:"Na 72 m sta stojali s tarčama (10 m od ognjene črte)."},
+  {m:1, t:S19+" · Prostor", q:"Na kateri razdalji sta tarči pri taktični vaji?", o:["72 m","69 m","62 m","70 m"], e:"Na 72 m sta stojali s tarčama (10 m od ognjene črte)."},
   {t:S19+" · Prostor", q:"Kako daleč od ognjene črte sta tarči?", o:["10 m","8 m","15 m"], e:"Ognjena črta je na 62 m, tarči na 72 m – razdalja 10 m."},
-  {t:S19+" · Prostor", q:"Kako visoka je ovira za vhod v prostor?", o:["2,1 m","1,5 m","2,5 m"], e:"Po sliki 79 je ovira za vhod visoka 2100 mm."},
+  {m:1, t:S19+" · Prostor", q:"Kako visoka je ovira za vhod v prostor?", o:["2,1 m","1,5 m","2,5 m"], e:"Po sliki 79 je ovira za vhod visoka 2100 mm."},
   /* Nastop */
   {t:S19+" · Nastop", q:"Komu desetar pri taktični vaji prijavi nastop in preda mapo?", o:["S-5","S-4","GS","S-1"], e:"Pri taktični vaji enoto sprejme S-5, ki da dovoljenje za pripravo opreme."},
   {t:S19+" · Nastop", q:"Kaj S-5 preveri poleg postavitve opreme?", o:["Količino vode v bazenu","Starost tekmovalcev","Elektronsko merjenje"], e:"S-5 sprejme enoto, prevzame liste, nadzira postavljanje opreme in preveri količino vode v bazenu."},
@@ -3473,7 +3485,7 @@ function genTakt(){
    [[0,62],"Ognjena črta je na 62 m.",["62 m","59 m","65 m","60 m"]],
    [[62,72],"Od ognjene črte do tarč je 10 m.",["10 m","8 m","7 m","13 m"]],
    [[0,72],"Proga je dolga 72 m.",["72 m","70 m","69 m","75 m"]]]).slice(0,3).forEach(([d,e,o])=>{
-    out.push({t:S19+" · Prostor", q:"Kolikšna je razdalja, označena z vprašajem?", fig:taktSvg({dist:d, labels:false})+TAKT_KEY, o, e});
+    out.push({m:1, t:S19+" · Prostor", q:"Kolikšna je razdalja, označena z vprašajem?", fig:taktSvg({dist:d, labels:false})+TAKT_KEY, o, e});
   });
   out.push(gTaktKaz(false), gTaktKaz(false), gTaktKaz(true));
   return out;
@@ -3498,7 +3510,7 @@ P4.push(
 P5.push(
   {t:S5+" · Enota", q:"Kdaj si pionirji smejo zamenjati tekmovalne oznake?", o:["Po izvedbi prejšnje vaje do prihoda na naslednjo vajo","Med štafeto","Nikoli"], e:"Oznake si lahko zamenjajo po izvedbi prejšnje vaje do prihoda ekipe na naslednjo vajo."},
   {t:S5+" · Predaja", q:"Kdaj je predaja ročnika pravilna?", o:["Ko sta v času predaje obe nogi obeh tekmovalcev znotraj 10 m pasu","Ko je vsaj en tekmovalec v pasu","Ko je ročnik v pasu, noge niso pomembne"], e:"Pravilna predaja: v času predaje sta obe nogi obeh tekmovalcev znotraj 10 m pasu (5 m pred in 5 m za oznako)."},
-  {t:S5+" · Predaja", q:"Kako velik je pas za predajo ročnika?", o:["10 m (5 m pred in 5 m za oznako)","5 m","20 m"], e:"Pas za predajo je 10 m: 5 m pred in 5 m za oznako dela proge."},
+  {m:1, t:S5+" · Predaja", q:"Kako velik je pas za predajo ročnika?", o:["10 m (5 m pred in 5 m za oznako)","5 m","20 m"], e:"Pas za predajo je 10 m: 5 m pred in 5 m za oznako dela proge."},
   {t:S5+" · Izvedba", q:"Kdaj je gred pravilno premagana?", o:["Ko stopi nanjo pred začetkom in z nje sestopi po njenem koncu","Ko stopi nanjo kjerkoli","Ko jo preskoči"], e:"Pravilno premagana gred: tekmovalec stopi nanjo pred začetkom gredi in sestopi po njenem koncu."},
   {t:S5+" · Izvedba", q:"Od koga N-1 prevzame ročnik?", o:["Od strojnika","Od sela","Od N-2"], e:"N-1 ročnik prevzame od St in v 4. delu (100–150 m) na 125 m premaga oviro za preskok."},
   {t:S5+" · Izvedba", q:"Do kdaj sme tekmovalec ponoviti premagovanje ovire?", o:["Samo pred predajo ročnika naslednjemu","Kadarkoli do konca štafete","Ne sme ponoviti"], e:"Ovire lahko ponovi, vendar samo pred predajo ročnika naslednjemu tekmovalcu."},
@@ -3583,7 +3595,7 @@ P9.push(
   {t:S9+" · Izvedba", q:"Tekmovalec postavlja nazaj porušeno oviro in jo obide z obema nogama zunaj proge. Kako se oceni?", o:["Nepravilno izvedena naloga","Ni napaka","Diskvalifikacija"], e:"Če je oviro po porušitvi obšel z obema nogama izven proge, je to nepravilno izvedena naloga."},
   {t:S9+" · Izvedba", q:"Tekmovalec med čakanjem ovira tekmovalca druge enote na sosednji progi. Kaj sledi?", o:["Diskvalifikacija","Ni napaka, ker še ni tekel","Nepravilno izvedena naloga"], e:"Oviranje tekmovalca druge enote je diskvalifikacija, tudi če je to storil v času čakanja."},
   {t:S9+" · Sodniki", q:"Kako sodnik preveri, ali sta cev in ročnik po cilju speta?", o:["Tekmovalca 9 prosi, naj rahlo povleče ročnik naprej","Sam potegne cev","Ne preverja"], e:"Če sodnik sumi, da sta razpeta, zaprosi tekmovalca 9, da rahlo povleče ročnik naprej v smeri teka."},
-  {t:S9+" · Ovire", q:"Na kateri razdalji od starta je lestev?", o:["20 m","25 m","15 m"], e:"Na 20 m od startne črte tekmovalec 1 premaga lestev s štirimi prečkami."},
+  {m:1, t:S9+" · Ovire", q:"Na kateri razdalji od starta je lestev?", o:["20 m","25 m","15 m"], e:"Na 20 m od startne črte tekmovalec 1 premaga lestev s štirimi prečkami."},
   {t:S9+" · Ovire", q:"Ali sta leva in desna stran lestve omejitev pri premagovanju?", o:["Ne, pogoj je višina 2 m","Da","Samo leva stran"], e:"Celotno telo mora preiti preko višine 2 m; širina lestve ni omejitev."},
   {t:S9+" · Ovire", q:"Kako mora biti tekmovalec obrnjen pri vzpenjanju in spuščanju po lestvi?", o:["Z obrazom proti lestvi","Pri spuščanju s hrbtom","Poljubno"], e:"Z obrazom obrnjenim proti lestvi – velja za vzpenjanje in spuščanje."},
   {t:S9+" · Izvedba", q:"Na kateri izliv trojaka tekmovalec 9 pripne cev?", o:["Na levi izliv","Na desni izliv","Na vhod trojaka"], e:"Tekmovalec 9 spne dve cevi, eno pripne na levi izliv trojaka, drugo na ročnik."},
@@ -3703,6 +3715,9 @@ P12.push(
   {t:S12+" · Sel", q:"Kako stoji sel ob koncu pri trojaku (raznoterosti)?", o:["Poljubno: razkoračeno, levo ali desno","Samo razkoračeno","Samo desno"], e:"Postavitev sela na koncu pri trojaku je poljubna (razkoračeno, levo, desno)."}
 );
 
+P8.push({t:S8+" · Proga", q:"Kje je drugi del proge pri vaji z ovirami za mladince?", o:["Od 60 do 65 m (vedrovki in tarči)","Od 0 do 60 m","Od 65 do 70 m","Od 70 do 75 m"], e:"Deli proge: 1. del 0–60 m (ovire in cevovod), 2. del 60–65 m (vedrovki in tarči), 3. del 65–70 m (orodje in vozli), 4. del 70–75 m (končna postavitev)."});
+P8.push({t:S8+" · Proga", q:"Kako je razdeljena proga pri vaji z ovirami za mladince?", o:["1. del 0–60 m, 2. del 60–65 m, 3. del 65–70 m, 4. del 70–75 m","1. del 0–50 m, 2. del 50–60 m, 3. del 60–70 m, 4. del 70–75 m","1. del 0–60 m, 2. del 60–70 m, 3. del 70–75 m"], e:"1. del: ovire in polaganje cevovoda (do 60 m), 2. del: vedrovki in tarči (60–65 m), 3. del: orodje in vozli (65–70 m), 4. del: končna postavitev (70–75 m)."});
+P9.push({t:S9+" · Proga", q:"Kje poteka deveti del proge pri štafeti za mladince?", o:["Od 350 m do cilja (400 m)","Od 300 do 350 m","Od 375 do 400 m"], e:"Deveti del poteka od oznake 350 m do cilja; do 365 m mora biti ročnik predan tekmovalcu 9, na 380 m sta trojak in 2 C cevi."});
 /* Tabele točk po starosti še k vprašanjem, ki zahtevajo branje iz tabele */
 function dtFull(base, step, count){
   const per = Math.ceil(count/2), cols = [0,1].map(c=>Array.from({length:per},(_,r)=>c*per+r).filter(k=>k<count));
@@ -3750,7 +3765,7 @@ const chBox = document.getElementById("chapters");
 CHAPTERS.forEach(c=>{
   const n = c.get().length;
   const l = document.createElement("label"); l.className = "chip";
-  l.innerHTML = `<input type="checkbox" id="ch-${c.id}" checked> <span></span> <span class="n">${n}</span>`;
+  l.innerHTML = `<input type="checkbox" id="ch-${c.id}" checked> <span></span> <span class="n" id="n-${c.id}">${n}</span>`;
   l.children[1].textContent = c.label;
   chBox.appendChild(l);
 });
@@ -3761,7 +3776,9 @@ const KIND = {2:"Dva odgovora (AB)",3:"Trije odgovori (ABC)",4:"Štirje odgovori
 const $ = id => document.getElementById(id);
 const label = o => typeof o === "string" ? o : o.label;
 let order = [], i = 0, correct = 0, wrong = [], exam = null;
-const pool = c => c.get().map(q=>Object.assign({}, q, {ch:c.label}));
+function updCounts(){ CHAPTERS.forEach(c=>{ const el=document.getElementById("n-"+c.id); if(el) el.textContent = c.get().filter(q=>!q.m || withMere()).length; }); }
+const withMere = () => { const el = document.getElementById("withMere"); return !el || el.checked; };
+const pool = c => c.get().filter(q=>!q.m || withMere()).map(q=>Object.assign({}, q, {ch:c.label}));
 function stopExam(){ if (exam){ clearInterval(exam.tick); exam = null; } $("timer").hidden = true; $("examHint").hidden = true; }
 
 function start(subset){
@@ -3908,9 +3925,11 @@ function examStart(){
   render();
   window.scrollTo({top: $("quiz").offsetTop - 20, behavior: "smooth"});
 }
-$("examGo").addEventListener("click", examStart);
-document.querySelectorAll(".chapters input, #shuffleQ, #shuffleA").forEach(el=>el.addEventListener("change", ()=>start()));
+$("examGo").addEventListener("click", ()=>{ $("withMere").checked = true; updCounts(); examStart(); });
+$("examGoNoM").addEventListener("click", ()=>{ $("withMere").checked = false; updCounts(); examStart(); });
+document.querySelectorAll(".chapters input, #shuffleQ, #shuffleA, #withMere").forEach(el=>el.addEventListener("change", ()=>start()));
 function setAllCh(v){ document.querySelectorAll(".chapters input").forEach(el=>{ el.checked = v; }); start(); }
+$("withMere").addEventListener("change", updCounts);
 $("chAll").addEventListener("click", ()=>setAllCh(true));
 $("chNone").addEventListener("click", ()=>setAllCh(false));
 start();
