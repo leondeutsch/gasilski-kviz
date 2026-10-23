@@ -156,7 +156,7 @@ table.data tr:last-child td { border-bottom: 0; }
     <span class="eyebrow">Neuradni kviz · poglavja 1–19</span>
     <h1>Gasilska tekmovanja prostovoljnih gasilcev</h1>
     <p class="sub">Vprašanja z dvema, tremi ali štirimi odgovori, oznake na slikah in računske naloge. Računske naloge dobijo ob vsakem začetku nove številke.</p>
-    <p class="ver">Verzija 61 · posodobljeno 21. 10. 2026</p>
+    <p class="ver">Verzija 65 · posodobljeno 23. 10. 2026</p>
   </header>
 
   <aside class="note" role="note">
@@ -1220,7 +1220,7 @@ P5.push(
   {t:S5+" · Izvedba", q:"Ali sme tekmovalec po predaji izteči na sosednjo progo?", o:["Da, če ne ovira sosednjega tekmovalca","Ne","Samo na cilju"], e:"Iztek na sosednjo progo je dovoljen, če ne ovira drugih."},
   {t:S5+" · Izvedba", q:"Tekmovalec si označi mesto predaje. Kaj mora storiti?", o:["Označbo po vaji odstraniti","Nič","Prijaviti GS"], e:"Mesto predaje si lahko označijo, oznako pa morajo odstraniti."},
   {t:S5+" · Izvedba", q:"Kdaj tekmovalec sme začeti z nalogo?", o:["Po prejemu ročnika","Ko vidi prihajajočega tekmovalca","Ob startnem strelu"], e:"Tekmovalec začne nalogo šele po prejemu ročnika."},
-  {t:S5+" · Izvedba", q:"Ali sme tekmovalec pri postavljanju ovire nazaj prestopiti širino proge?", o:["Ne","Da","Da, z eno nogo"], e:"Pri postavljanju ovire ne sme prestopiti širine proge."},
+  {t:S5+" · Izvedba", q:"Ali sme tekmovalec pri postavljanju ovire nazaj prestopiti širino proge?", o:["Z eno nogo da, z obema ne","Ne, niti z eno nogo","Da, tudi z obema nogama"], e:"Z eno nogo sme stopiti čez črto proge; če jo prestopi z obema nogama, je to napaka."},
   {t:S5+" · Merjenje", q:"Kdaj se začne elektronsko merjenje pri štafeti?", o:["Ko D prekine žarek na startu","Ob strelu","Ko S prejme ročnik"], e:"Čas teče od prekinitve žarka D do prekinitve žarka C-2 na cilju."},
   {t:S5+" · Merjenje", q:"Ali je pri elektronskem merjenju štafete možen prehiter start?", o:["Ne","Da","Le pri strelu"], e:"Pri elektronskem merjenju ni prehitrega starta."},
   {t:S5+" · Ocenjevanje", q:"Tekmovalec z obema nogama prestopi progo. Kaj je to?", o:["Nepravilno premagana ovira oz. izvedena naloga","Nepremagana ovira","Ni napaka"], e:"Prestop proge z obema nogama se oceni kot nepravilno izvedena naloga."},
@@ -1236,7 +1236,6 @@ P6.push(
   {t:S6+" · Enota", q:"Kakšna obutev je predpisana pri štafeti s prenosom vode?", o:["Športni copati","Gumijasti škornji","Poljubna"], e:"Predpisana obutev so športni copati."},
   {t:S6+" · Oprema", q:"Iz česa je vedro pri prenosu vode?", o:["Plastično ali kovinsko z ročajem","Samo plastično","Platneno"], e:"Vedro 3 l, plastično ali kovinsko z ročajem."},
   {t:S6+" · Prostor", q:"Koliko posod je na tekmovalnem prostoru prenosa vode?", o:["Ena na vsaki strani (2)","Ena na sredini","3"], e:"Na vsaki strani je ena posoda."},
-  {m:1, t:S6+" · Prostor", q:"Koliko stez je pri prenosu vode in kako široke so?", o:["3 steze po 4 m","2 stezi po 5 m","9 stez po 1 m"], e:"3 dolžinske steze, široke po 4 m; po sredini je črta 5–10 cm."},
   {t:S6+" · Nastop", q:"Kdo dovoli pripravo opreme pri prenosu vode?", o:["Sodnik starter","GS","S-2"], e:"D prijavi nastop starterju, ki dovoli pripravo opreme."},
   {t:S6+" · Izvedba", q:"Kdo začne prenos vode?", o:["Desetar","Sel","C-2"], e:"Začne D, ki vzame vedro, zajame vodo in jo odnese."},
   {t:S6+" · Izvedba", q:"Kam se vrne tekmovalec po predaji vedra?", o:["Na konec kolone","Na začetek kolone","Ob prazno posodo"], e:"Po predaji se vrne na konec kolone."},
@@ -1248,7 +1247,7 @@ P6.push(
   {t:S6+" · Ocenjevanje", q:"Vedro ni bilo predano naslednjemu direktno v roke. Kako se oceni?", o:["Napaka – prestop startne črte / vedro ni predano v roke","Ni napaka"], e:"Vedro mora biti predano direktno v roke."},
   {t:S6+" · Ocenjevanje", q:"Tekmovalec s celim stopalom prestopi startno črto, preden dobi vedro. Kako se oceni?", o:["Napaka – prestop startne črte","Ni napaka"], e:"Prestop startne črte pred prejemom vedra je napaka."},
   {t:S6+" · Ocenjevanje", q:"Do katerega roba se meri manjkajoča voda?", o:["Do zgornjega roba posode, v katero nalivajo","Do oznake 50 l","Do dna posode"], e:"Meri se od površine vode do zgornjega roba posode, v katero nalivajo."},
-  {t:S6+" · Sodniki", q:"Kdo spremlja pravilnost dela tekmovalcev med prenosom vode?", o:["Sodnik starter","GS","S-1"], e:"Starter izda znak za začetek in spremlja pravilnost dela; GS meri čas in nivo vode."},
+  {t:S6+" · Sodniki", q:"Kdo spremlja pravilnost dela tekmovalcev med prenosom vode?", o:["GS in sodnik starter","Samo sodnik starter","Samo GS"], e:"Pravilnost dela tekmovalcev spremljata oba sodnika: GS (meri tudi čas in nivo vode) in sodnik starter (izda tudi znak za začetek)."},
   {t:S6+" · Sodniki", q:"Koliko sodnikov ocenjuje štafeto s prenosom vode?", o:["2 (GS in sodnik starter)","3","1"], e:"Ocenjujeta GS in sodnik starter."}
 );
 P7.push(
@@ -1256,7 +1255,7 @@ P7.push(
   {t:S7+" · Enota", q:"Kako se priporoča razvrstiti člane enote pri razvrščanju?", o:["Po velikosti","Po starosti","Po abecedi"], e:"Razpored je poljuben, priporoča se po velikosti."},
   {t:S7+" · Izvedba", q:"Kako desetar pozdravi predsednika ocenjevalne komisije?", o:["Z roko","S poveljem »Po-ZDRAV!«","Z naklonom glave"], e:"D se obrne k predsedniku in ga pozdravi z roko."},
   {t:S7+" · Izvedba", q:"Kaj predsednik vpraša desetarja po poročilu?", o:["Ali so kakšne nejasnosti v zvezi z izvedbo vaje","Koliko so stari tekmovalci","Kdo je mentor"], e:"Predsednik vpraša, ali so kakšne nejasnosti, in odobri izvedbo."},
-  {t:S7+" · Izvedba", q:"Kaj naredi desetar po izvedenem povelju »Na des-NO!«?", o:["Se obrne na levo ali na desno","Odide pred enoto","Pozdravi komisijo"], e:"Po izvedenem povelju se D obrne na levo ali na desno."},
+  {t:S7+" · Izvedba", q:"Kaj naredi desetar po izvedenem povelju »Na des-NO!«?", o:["Se obrne v nasprotno smer od povelja – na levo","Se obrne v isto smer kot enota – na desno","Ostane obrnjen proti enoti"], e:"Desetar se obrne v drugo smer, kot poveljuje: po »Na des-NO!« se D obrne na levo (po »Na le-VO!« pa na desno)."},
   {t:S7+" · Izvedba", q:"Kako se glasi povelje za razpust enote?", o:["»Prosto!«","»Razhod!«","»Mir-NO!«"], e:"D razpusti enoto s poveljem »Prosto!«."},
   {t:S7+" · Izvedba", q:"Kdaj člani enote zapustijo mesto po povelju »Prosto!«?", o:["Po odzdravu desetarja","Takoj","Po znaku GS"], e:"Vsi odzdravijo D z roko in po njegovem odzdravu zapustijo mesto."},
   {t:S7+" · Izvedba", q:"Kje mora biti izvedena vaja razvrščanja?", o:["V tekmovalnem prostoru","Kjerkoli na poligonu","Pred tribuno"], e:"Vaja mora biti izvedena v tekmovalnem prostoru (10 × 20 m)."},
