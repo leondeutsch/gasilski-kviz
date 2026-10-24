@@ -156,7 +156,7 @@ table.data tr:last-child td { border-bottom: 0; }
     <span class="eyebrow">Neuradni kviz · poglavja 1–19</span>
     <h1>Gasilska tekmovanja prostovoljnih gasilcev</h1>
     <p class="sub">Vprašanja z dvema, tremi ali štirimi odgovori, oznake na slikah in računske naloge. Računske naloge dobijo ob vsakem začetku nove številke.</p>
-    <p class="ver">Verzija 73 · posodobljeno 24. 10. 2026</p>
+    <p class="ver">Verzija 75 · posodobljeno 24. 10. 2026</p>
   </header>
 
   <aside class="note" role="note">
@@ -2212,16 +2212,18 @@ function gRaznKaz(final){
     ["Sel je sestopil z gredi z eno nogo pred črto",5,"S – naloga na gredi"],
     ["Spojka na trojaku je polspeta",10,"S – polspeta spojka"],
     ["N-1 je prevrnil vedro",2,"N-1 – prevrnjeno vedro"],
-    ["Tarča ni zrušena",10,"N-1 – tarča ni zrušena"],
+    ["Tarča ni zrušena",10,"N-1 – tarča ni zrušena","T"],
     ["Vržena C cev je skrenila izven metrskega pasu",2,"N-2 – cev izven pasu"],
     ["N-2 je cev po razvitju še popravljal",5,"N-2 – popravljanje"],
     ["Navezava cevi z ročnikom je nepravilna",5,"V-1 – nepravilna navezava"],
     ["Torbica je padla 1,5 m od zunanjega roba kroga",3,"V-2 – 3 × 0,5 m = 3"],
     ["Trojak je sel vrgel ob tla",5,"metanje orodja"],
-    ["N-1 je ob zbitju tarče stal pred ognjeno črto",0,"ni napaka"],
+    ["N-1 je ob zbitju tarče stal pred ognjeno črto",0,"ni napaka","T"],
     ["Strojnik je ključ med delom odložil, na koncu ga ima za pasom",0,"ni napaka"]
   ];
-  const rows = shuffle(pool).slice(0, rnd(2,4)), K = rows.reduce((s,r)=>s+r[1],0);
+  const nR = rnd(2,4), rows = [];
+  shuffle(pool).forEach(r=>{ if (rows.length<nR && !(r[3] && rows.some(x=>x[3]===r[3]))) rows.push(r); });
+  const K = rows.reduce((s,r)=>s+r[1],0);
   const tbl = `<div class="tbl"><table class="data"><thead><tr><th>Ugotovljeno med vajo</th></tr></thead><tbody>` +
     rows.map(r=>`<tr><td style="white-space:normal">${r[0]}</td></tr>`).join("") + `</tbody></table></div>` + penTbl(PEN.razn);
   const lines = rows.map(r=>`${r[2]}: ${r[1]}`).join("\n");
@@ -2258,7 +2260,7 @@ function genRazn(){
 /* ---------- 13. Vaja raznoterosti – 9 tekmovalcev ---------- */
 const S13 = "13 · Raznoterosti (9)";
 const P13 = [
-  {t:S13+" · Enota", q:"Koliko tekmovalcev sodeluje pri vaji raznoterosti z 9 tekmovalci in katera funkcija se doda?", o:["9 – dodata se C-1 in C-2","9 – dodata se N-3 in V-3","8 – doda se C-1"], e:"9 tekmovalcev: D, S, St, N-1, N-2, V-1, V-2, C-1, C-2."},
+  {t:S13+" · Enota", q:"Koliko tekmovalcev sodeluje pri vaji raznoterosti z 9 tekmovalci in kateri funkciji se dodata v primerjavi z vajo raznoterosti s 7 tekmovalci?", o:["9 – dodata se C-1 in C-2","9 – dodata se N-3 in V-3","8 – doda se C-1"], e:"Vaja s 7 tekmovalci: D, S, St, N-1, N-2, V-1, V-2. Pri vaji z 9 tekmovalci se dodata C-1 in C-2."},
   {t:S13+" · Prostor", q:"Kolikšen je tekmovalni prostor za vajo raznoterosti z 9 tekmovalci?", o:["18 × 22 m","14 × 22 m","18 × 20 m"], e:"9 polj po 2 m = 18 m širine, dolžina 22 m (pri 7 tekmovalcih 14 × 22 m)."},
   {t:S13+" · Prostor", q:"Koliko stolov je pri vaji raznoterosti z 9 tekmovalci?", o:["9","7","18"], e:"9 stolov na črti 5 m, na njih čelada in pas."},
   {t:S13+" · Oprema", q:"Kateri gasilniki se uporabljajo pri vaji raznoterosti z 9 tekmovalci?", o:["2 × S-6, 2 × CO2 in 2 × V-9 (ali 2 vedrovki)","2 × S-9 in 2 × CO2","4 × S-6"], e:"2 gasilnika S-6, 2 CO2 in 2 V-9 ali 2 vedrovki."},
@@ -2342,10 +2344,10 @@ const R9_KEY = `<p class="info">Pogled od zgoraj: 9 polj, start spodaj. Rumene t
 PEN.razn9 = [["Čas izvedbe vaje","1 / s"],["Nepravilen start","5"],["Govorjenje med delom (po tekmovalcu)","2"],["Nepravilna postavitev tekmovalca","5"],["Metanje orodja ob tla (hidrantni nastavek)","5"],["Nepravilna opremljenost s čelado (1× po tekmovalcu)","5"],["Nepravilna opremljenost s pasom (1× po tekmovalcu)","5"],["D: naloga ni izvedena po opisu","5"],["St: H nastavek premalo privit / brez ključa / se dotika nastavka","5"],["St: H nastavek ni vpet v ležišče","10"],["S ali N-2: nepravilna uporaba gasilnika","10"],["N-1: prevrnitev vedrovke / prevrnjeno vedro","2"],["N-1: prestop ognjene črte","5"],["N-1: tarča ni zrušena","10"],["V-1: nepravilna navezava","5"],["V-2: prestop črte, preden torbica pade","2"],["V-2: krog ni zadet (za vsakih 0,5 m)","1"],["C-1: nepravilna reševalna zanka","5"],["C-2: nepravilna navezava sekire","5"]];
 function gRazn9Kaz(withB){
   const pool = [
-    ["Sel je za požar električne naprave izbral S-6",10,"S – nepravilen gasilnik"],
-    ["N-2 je za gorenje bencina izbral V-9",10,"N-2 – nepravilen gasilnik"],
-    ["Sel je za gorenje lesa izbral vedrovko",0,"ni napaka (les: V-9 ali vedrovka)"],
-    ["N-2 je za gorenje plina izbral CO2",0,"ni napaka (plin: CO2 ali S-6)"],
+    ["Sel je za požar električne naprave izbral S-6",10,"S – nepravilen gasilnik","S"],
+    ["N-2 je za gorenje bencina izbral V-9",10,"N-2 – nepravilen gasilnik","N2"],
+    ["Sel je za gorenje lesa izbral vedrovko",0,"ni napaka (les: V-9 ali vedrovka)","S"],
+    ["N-2 je za gorenje plina izbral CO2",0,"ni napaka (plin: CO2 ali S-6)","N2"],
     ["Sekira C-2 se dotika tal",5,"C-2 – nepravilna navezava sekire"],
     ["C-1 je reševalno zanko naredil nepravilno",5,"C-1 – nepravilna zanka"],
     ["Strojnik je H nastavek vrgel ob tla",5,"metanje orodja"],
@@ -2355,7 +2357,9 @@ function gRazn9Kaz(withB){
     ["N-1 je v trenutku zbitja tarče s celim stopalom stal čez ognjeno črto",5,"N-1 – prestop ognjene črte"],
     ["Ročnik V-1 na koncu ne visi",5,"V-1 – nepravilna navezava"]
   ];
-  const rows = shuffle(pool).slice(0, rnd(2,4)), K = rows.reduce((s,r)=>s+r[1],0);
+  const nR = rnd(2,4), rows = [];
+  shuffle(pool).forEach(r=>{ if (rows.length<nR && !(r[3] && rows.some(x=>x[3]===r[3]))) rows.push(r); });
+  const K = rows.reduce((s,r)=>s+r[1],0);
   const tbl = `<div class="tbl"><table class="data"><thead><tr><th>Ugotovljeno med vajo</th></tr></thead><tbody>` +
     rows.map(r=>`<tr><td style="white-space:normal">${r[0]}</td></tr>`).join("") + `</tbody></table></div>` + penTbl(PEN.razn9);
   const lines = rows.map(r=>`${r[2]}: ${r[1]}`).join("\n");
