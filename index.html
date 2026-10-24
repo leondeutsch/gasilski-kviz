@@ -156,7 +156,7 @@ table.data tr:last-child td { border-bottom: 0; }
     <span class="eyebrow">Neuradni kviz · poglavja 1–19</span>
     <h1>Gasilska tekmovanja prostovoljnih gasilcev</h1>
     <p class="sub">Vprašanja z dvema, tremi ali štirimi odgovori, oznake na slikah in računske naloge. Računske naloge dobijo ob vsakem začetku nove številke.</p>
-    <p class="ver">Verzija 66 · posodobljeno 23. 10. 2026</p>
+    <p class="ver">Verzija 73 · posodobljeno 24. 10. 2026</p>
   </header>
 
   <aside class="note" role="note">
@@ -1906,7 +1906,6 @@ const P11 = [
   {t:S11+" · Enota", q:"Koliko tekmovalcev sodeluje pri vaji s hidrantom za starejše gasilce?", o:["7 (D, S, St, N-1, N-2, V-1, V-2)","9","8"], e:"7 tekmovalcev: D, S, St, N-1, N-2, V-1, V-2; cevarjev ni."},
   {t:S11+" · Enota", q:"Kakšna je osebna oprema pri vaji s hidrantom za 7 tekmovalcev?", o:["Delovna obleka, gasilska čelada in pas s karabinom","Delovna obleka in delovna kapa","Delovna obleka in čelada brez pasu"], e:"Delovna obleka, enotna gasilska čelada (st. gasilci EN 443 / EN 16471 / EN 16473; st. gasilke izjemoma tudi CZ ali delovna čelada) in pas s karabinom."},
   {t:S11+" · Enota", q:"Kakšna je predpisana obutev pri vaji s hidrantom za 7 tekmovalcev?", o:["Čevlji temne barve iz usnja ali umetne mase, brez žebljičkov in čepov","Športni copati","Gasilski škornji"], e:"Temni čevlji iz usnja ali umetne mase; žebljički in čepi niso dovoljeni, priporočljivo do gležnjev."},
-  {t:S11+" · Oprema", q:"Kakšen hidrant zagotovi organizator?", o:["Improviziran podzemni hidrant","Nadzemni hidrant","Cisterno s hidrantnim nastavkom C/C"], e:"Organizator zagotovi improviziran podzemni hidrant in omejevalec tlaka na 5 bar."},
   {t:S11+" · Oprema", q:"Kakšen je hidrantni nastavek pri vaji za 7 tekmovalcev?", o:["B/B, ventil popolnoma odprt po 4 obratih","C/C, ventil odprt po 2 obratih","B/B, ventil odprt po pol obrata"], e:"Hidrantni nastavek B/B; ventil je popolnoma odprt po 4 obratih."},
   {t:S11+" · Oprema", q:"Koliko in kako dolge tlačne B cevi se uporabljajo?", o:["2 B cevi, dolgi 15 m","2 B cevi, dolgi 20 m","1 B cev, dolga 20 m","3 B cevi, dolge 15 m"], e:"2 tlačni B cevi, dvojno zviti, dolgi 15 m, s cevnima nosilcema."},
   {t:S11+" · Oprema", q:"Koliko tlačnih C cevi se uporablja pri vaji za 7 tekmovalcev?", o:["6","8","4"], e:"6 tlačnih C cevi (pri mladincih 8)."},
@@ -1952,7 +1951,6 @@ P11.push(
   {t:S11+" · Enota", q:"Ali so pri vaji s hidrantom za 7 tekmovalcev dovoljeni čevlji z žebljički ali čepi?", o:["Ne","Da","Le na travi"], e:"Čevlji temne barve iz usnja ali umetne mase; žebljički in čepi niso dovoljeni."},
   {t:S11+" · Enota", q:"Katera tekmovalca NISTA v enoti s 7 tekmovalci?", o:["C-1 in C-2","V-1 in V-2","N-1 in N-2"], e:"Enota: D, S, St, N-1, N-2, V-1, V-2 – brez cevarjev."},
   {t:S11+" · Oprema", q:"Po koliko obratih mora biti ventil H nastavka popolnoma odprt?", o:["Po 4 obratih","Po 2 obratih","Po 6 obratih"], e:"Ventil hidrantnega nastavka B/B je popolnoma odprt po 4 obratih."},
-  {t:S11+" · Oprema", q:"Na koliko barov je nastavljen omejevalec tlaka pri vaji za 7 tekmovalcev?", o:["5 bar","8,5 bar","10 bar"], e:"Omejevalec tlaka je nastavljen na 5 bar."},
   {t:S11+" · Oprema", q:"Kdo pregleda pravilnost opreme in poroča GS pri vaji za 7 tekmovalcev?", o:["S-2","S-3","S-1"], e:"S-2 pregleda opremo in poroča GS."},
   {t:S11+" · Oprema", q:"Kam morajo gledati spojke zvitih tlačnih cevi?", o:["V smeri napada","Proti hidrantu","Navzgor"], e:"Cevi morajo biti dvojno zvite, spojke gledajo v smeri napada (ne 4-kratno zvite)."},
   {t:S11+" · Prostor", q:"Kakšna je površina proge pri vaji za 7 tekmovalcev?", o:["Ravna travnata","Asfalt","Tartan"], e:"Proga je ravna travnata površina 10 × 55 m."},
@@ -2082,7 +2080,7 @@ const P12 = [
   {t:S12+" · Prostor", q:"Kolikšen je tekmovalni prostor za vajo raznoterosti?", o:["14 × 22 m","10 × 22 m","14 × 15 m","12 × 20 m"], e:"Prostor 14 × 22 m, razdeljen na 7 dvometrskih polj."},
   {m:1, t:S12+" · Prostor", q:"Kako široka so polja pri vaji raznoterosti?", o:["2 m","3 m","1,5 m"], e:"7 polj po 2 m = 14 m širine."},
   {t:S12+" · Prostor", q:"Kako daleč od startne črte se začne prostor za opremljanje?", o:["4 m","3 m","5 m"], e:"Od startne črte do prostora za opremljanje so 4 m, prostor (pas) je širok 3 m."},
-  {t:S12+" · Prostor", q:"Kako širok je pas za opremljanje?", o:["3 m","2 m","4 m"], e:"Za črto 4 m je 3 m širok pas, kjer se tekmovalci opremijo s čelado in pasom."},
+  {t:S12+" · Prostor", q:"Kako dolg (v smeri napada) je pas za opremljanje?", o:["3 m","2 m","4 m"], e:"Za črto 4 m je 3 m dolg pas (od 4 do 7 m), kjer se tekmovalci opremijo s čelado in pasom."},
   {m:1, t:S12+" · Prostor", q:"Na kateri črti so postavljeni stoli?", o:["5 m","4 m","7 m"], e:"Stoli so na črti 5 m, orodje na črti 7 m, zaključna črta je na 22 m."},
   {m:1, t:S12+" · Prostor", q:"Na kateri črti je postavljeno tekmovalno orodje?", o:["7 m","5 m","4 m","22 m"], e:"Orodje je na črti 7 m."},
   {t:S12+" · Polja", q:"V katerem polju je gred?", o:["V polju sela (3. polje)","V polju strojnika (2. polje)","V polju N-2 (5. polje)"], e:"3. polje (S): trojak na 7 m, gred na sredini med 7 m in 22 m, 3 m pred ciljem cevi."},
@@ -2164,7 +2162,7 @@ P12.push(
   {t:S12+" · Ocenjevanje", q:"Sel ne opravi naloge na gredi. Kako se oceni?", o:["Nepravilno delo sela","Ni napaka"], e:"Neopravljena naloga na gredi je nepravilno delo S."},
   {t:S12+" · Ocenjevanje", q:"Tlačna cev ni pravilno pripeta na trojak (levo/desno). Kako se oceni?", o:["Nepravilno delo sela","Ni napaka"], e:"Nepravilno pripeta cev na trojak je nepravilno delo S."},
   {t:S12+" · Ocenjevanje", q:"N-1 prevrne vedrovko in jo pobere. Kako se oceni?", o:["Napaka – prevrnitev vedrovke, tudi če jo pobere","Ni napaka, ker jo je pobral"], e:"Prevrnitev vedrovke je napaka, tudi če jo pobere."},
-  {t:S12+" · Ocenjevanje", q:"N-1 s celim stopalom prestopi ognjeno črto. Kako se oceni?", o:["Napaka – prestop ognjene črte","Ni napaka"], e:"Prestop ognjene črte s celim stopalom je napaka N-1."},
+  {t:S12+" · Ocenjevanje", q:"N-1 v trenutku zbitja tarče s celim stopalom stoji čez ognjeno črto. Kako se oceni?", o:["Napaka – prestop ognjene črte","Ni napaka"], e:"N-1 v trenutku zbitja tarče ne sme s celim stopalom stati čez ognjeno črto; šteje položaj ob zbitju tarče."},
   {t:S12+" · Ocenjevanje", q:"Cev N-2 skrene izven metrskega pasu. Kako se oceni?", o:["Napaka – cev izven metrskega pasu","Ni napaka"], e:"Cev izven metrskega pasu je napaka N-2."},
   {t:S12+" · Ocenjevanje", q:"Cev N-2 ni v celoti razvita. Kako se oceni?", o:["Napaka – cev ni v celoti razvita","Ni napaka"], e:"Nerazvita cev je napaka N-2."},
   {t:S12+" · Ocenjevanje", q:"V-1 kljub poskusom ne naredi navezave. Kako se oceni?", o:["Napaka – navezava ni narejena","Diskvalifikacija","Ni napaka"], e:"Navezava, ki kljub poskusom ni narejena, je napaka; DSQ bi bil, če sploh ne poskusi."},
@@ -2247,7 +2245,7 @@ function genRazn(){
     out.push({t:S12+" · Polja", q:"Čigavo polje je označeno?", fig:raznSvg({lane:i})+RAZN_KEY, o:[RLANE[i], ...near.map(x=>RLANE[x])], e:`${i+1}. polje: ${RLANE[i]} – ${RTASK[i]}. Vrstni red polj: D, St, S, N-1, N-2, V-1, V-2.`});
   });
   [[[0,4],"Od startne črte do pasu za opremljanje so 4 m.",["4 m","3 m","5 m","2 m"]],
-   [[4,7],"Pas za opremljanje je širok 3 m (od 4 do 7 m).",["3 m","2 m","4 m","1 m"]],
+   [[4,7],"Pas za opremljanje je dolg 3 m (od 4 do 7 m).",["3 m","2 m","4 m","1 m"]],
    [[0,22],"Prostor je dolg 22 m.",["22 m","20 m","15 m","25 m"]],
    [[14,22,6],"V-2 stoji 8 m pred črto 22 m.",["8 m","6 m","10 m","5 m"]]].forEach(([d,e,o])=>{
     out.push({m:1, t:S12+" · Prostor", q:"Kolikšna je razdalja, označena z vprašajem?", fig:raznSvg({dist:d, labels:false})+RAZN_KEY, o, e});
@@ -2354,7 +2352,7 @@ function gRazn9Kaz(withB){
     ["Tekmovalec nima zapetega podbradnika",5,"opremljenost s čelado"],
     ["Trije tekmovalci so govorili",6,"govorjenje 3 × 2"],
     ["Torbica V-2 je padla 1 m od zunanjega roba kroga",2,"V-2 – 2 × 0,5 m = 2"],
-    ["N-1 je prestopil ognjeno črto s celim stopalom",5,"N-1 – prestop ognjene črte"],
+    ["N-1 je v trenutku zbitja tarče s celim stopalom stal čez ognjeno črto",5,"N-1 – prestop ognjene črte"],
     ["Ročnik V-1 na koncu ne visi",5,"V-1 – nepravilna navezava"]
   ];
   const rows = shuffle(pool).slice(0, rnd(2,4)), K = rows.reduce((s,r)=>s+r[1],0);
@@ -3136,12 +3134,12 @@ const P18 = [
   {t:S18+" · Končano", q:"Kdo pritisne tipko STOP pri SSV?", o:["Strojnik po povelju »Končano.«","C-1","GS"], e:"Po »Končano« St pritisne tipko STOP."},
   {t:S18+" · Končano", q:"Tipko STOP pritisne drug tekmovalec, ne strojnik. Kaj sledi?", o:["Nepravilno delo in ročno izmerjen čas","Ni napaka","Diskvalifikacija"], e:"Če STOP pritisne drug tekmovalec – nepravilno delo, velja ročni čas."},
   {t:S18+" · Končano", q:"V kolikšnem času se morajo tekmovalci po opravljenem delu zvrstiti za črto?", o:["V 10 s","V 3 s","V 30 s"], e:"Po opravljenem delu se morajo v 10 s zvrstiti za črto končne postavitve, sicer nepravilna postavitev."},
-  {t:S18+" · Končano", q:"Ali mora V-2 čakati na povelje »Končano«, preden zapusti MB?", o:["Ne","Da","Le če drži vod"], e:"V-2 ni treba čakati na povelje »Končano«; pred »Končano« pa ne sme nihče drug razen V-1 zapustiti območja MB."},
+  {t:S18+" · Končano", q:"Do kdaj V-2 pridržuje sesalni vod pri MB?", o:["Dokler St ne spoji voda na MB in poveljuje »Končano«","Samo dokler vod ne prinesejo do MB","Do konca vaje, tudi po »Končano«"], e:"V-2 in St stojita razkoračeno čez sesalni vod (obe nogi na tleh) in ga pridržujeta, dokler St voda ne spoji na MB in poveljuje »Končano«; pred »Končano« razen V-1 nihče ne sme zapustiti območja MB."},
   {t:S18+" · Končano", q:"Kdo sme zapustiti območje MB pred poveljem »Končano«?", o:["V-1, ki veže vezalno vrv","C-1","Strojnik"], e:"Izjema je V-1 (veže vezalno vrv); drugače napaka (1×)."},
   {t:S18+" · Končano", q:"Kaj sme strojnik narediti s ključem po povelju »Končano.«?", o:["Zategne spojko do konca in ključ odloži ali obdrži","Prestavi ključ","Odpne spojko"], e:"Spojko sme le še zategniti; prestavitev ključa je nepravilno delo."},
   {t:S18+" · Končano", q:"Kdaj sodnika ustavita čas pri ročnem merjenju?", o:["Ko je St zaključil delo kot je predpisano","Ob povelju »Veži«","Ko so vsi za črto"], e:"Ob »Končano« sodnika dvigneta roke in ustavita čas, ko St zaključi predpisano delo."},
   {t:S18+" · Ponovno spajanje", q:"Spojka se odpne po povelju »Končano« in jo ponovno spnejo. Kaj je to?", o:["Odpeta spojka","Ni napaka","Nepravilno delo"], e:"Vsako ponovno spajanje po »Končano« je odpeta spojka."},
-  {t:S18+" · Postavitev", q:"Kam gledajo tekmovalci ob končni postavitvi pri SSV?", o:["V smeri MB","Proti GS","Proti vodi"], e:"Vsi stojijo za črto in gledajo v smeri MB."},
+  {t:S18+" · Postavitev", q:"Kam gledajo tekmovalci ob končni postavitvi pri SSV?", o:["V smeri MB (proti odvzemu vode)","Proti GS","Stran od MB"], e:"Vsi stojijo za črto končne postavitve in gledajo v smeri MB oziroma proti odvzemu vode."},
   {t:S18+" · Postavitev", q:"Kako se tekmovalci ob končni postavitvi dotikajo črte?", o:["S konicami prstov","S peto","Ne dotikajo se"], e:"Vsi se morajo s konicami prstov dotikati črte."},
   {t:S18+" · Postavitev", q:"Kdo ima ob končni postavitvi ključ za spojke?", o:["C-1 in C-2","St","V-1 in V-2"], e:"C-1 in C-2 sta opremljena s ključem; če ga nimata – nepravilno delo za vsak primer."},
   {t:S18+" · Postavitev", q:"Kdo stoji levo od strojnika ob končni postavitvi (gledano v smeri MB)?", o:["V-1","D","C-2"], e:"Vrstni red (vsak levo od prejšnjega): D, St, V-1, V-2, C-1, C-2."},
@@ -3617,7 +3615,8 @@ P11.push(
   {t:S11+" · Izvedba", q:"V-1 ne izvleče cevnega nosilca, izvleče ga V-2 pred metom cevi v lok. Kako se oceni?", o:["Nepravilno delo","Ni napaka","Pozabljena oprema"], e:"Cevni nosilec mora izvleči V-1; če ga izvleče V-2, je to nepravilno delo."},
   {t:S11+" · Povelja", q:"N-1 ima pri povelju »1. vodo« v ustih cevni pritrdilec. Kako se oceni?", o:["Napačno oziroma nerazumljivo povelje","Ni napaka","Nepravilna postavitev"], e:"Cevnega nosilca in pritrdilca ni dovoljeno imeti v ustih; pri povelju »x-vodo« je to napačno oz. nerazumljivo povelje."},
   {t:S11+" · Konec", q:"Napadalec ima na koncu vaje v ustih del opreme. Kako se oceni?", o:["Nepravilna postavitev tekmovalcev","Ni napaka","Pozabljena oprema"], e:"Če imajo N-1, N-2, V-1 ali V-2 na koncu vaje v ustih dele opreme, je to nepravilna postavitev tekmovalcev."},
-  {t:S11+" · Trojak", q:"Sel povelje »1. vodo« potrdi ustno. Ali je to napaka?", o:["Ne","Da, nepravilno delo","Da, napačno povelje"], e:"Ustna potrditev povelja s strani sela ni napaka."},
+  {t:S11+" · Trojak", q:"Sel zahtevo »1. vodo« poleg dviga roke potrdi še ustno. Ali je to napaka?", o:["Ne, ustna potrditev ni napaka","Da, nepravilno delo","Da, napačno povelje"], e:"Ustna potrditev zahtevane vode s strani sela ni napaka – roko pa mora vseeno dvigniti."},
+  {t:S11+" · Trojak", q:"Ali sme sel zahtevo za vodo (»1. vodo«, »2. vodo«) potrditi samo ustno?", o:["Ne, roko mora vseeno dvigniti (ustno lahko potrdi dodatno)","Da, ustna potrditev zadošča","Da, če je povelje glasno"], e:"Ustna potrditev ni napaka, vendar mora sel zahtevo za vodo vseeno potrditi z dvigom roke."},
   {t:S11+" · Trojak", q:"Od kod sel sprejema povelja in upravlja trojak?", o:["Razkoračeno čez B cev neposredno pred trojakom (v smeri napada)","Ob strani trojaka","Za trojakom"], e:"Trojak je zaseden, ko se S postavi razkoračeno čez B cev neposredno pred trojakom; s tega mesta sprejema povelja in upravlja trojak."},
   {t:S11+" · Konec", q:"V-1 izgubi cevni nosilec in mu ga pobere V-2. Kako se oceni?", o:["Nepravilno delo","Ni napaka","Pozabljena oprema"], e:"Če izgubljen nosilec za V-1 pobere V-2, je to nepravilno delo."},
   {t:S11+" · Konec", q:"V-1 izgubi cevni nosilec in ga pobere sam, V-2 mu medtem drži ročnik s cevjo. Kako se oceni?", o:["Ni napaka","Nepravilno delo","Pozabljena oprema"], e:"Ni napaka – nosilec je pobral sam, V-2 je le pridrževal ročnik s cevjo."},
