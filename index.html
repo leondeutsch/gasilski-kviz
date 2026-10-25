@@ -156,7 +156,7 @@ table.data tr:last-child td { border-bottom: 0; }
     <span class="eyebrow">Neuradni kviz · poglavja 1–19</span>
     <h1>Gasilska tekmovanja prostovoljnih gasilcev</h1>
     <p class="sub">Vprašanja z dvema, tremi ali štirimi odgovori, oznake na slikah in računske naloge. Računske naloge dobijo ob vsakem začetku nove številke.</p>
-    <p class="ver">Verzija 75 · posodobljeno 24. 10. 2026</p>
+    <p class="ver">Verzija 79 · posodobljeno 25. 10. 2026</p>
   </header>
 
   <aside class="note" role="note">
@@ -2807,7 +2807,7 @@ P16.push(
   {t:S16+" · Ocenjevanje", q:"Spoj je spet samo z enim zobom. Kaj je to?", o:["Razpeta spojka","Nepravilno delo","Ni napaka"], e:"Spoj z enim zobom je razpeta spojka; prav tako, če jo zapne drug tekmovalec."},
   {t:S16+" · Ocenjevanje", q:"Kaj spada pod napačno ali nerazumljivo povelje?", o:["Izpuščeni važni deli povelja ali napačna vsebina","Prehitro izdano povelje »Sesalni vod v vodo«","Govorjenje med delom"], e:"Izpuščeni deli, napačna vsebina, neizdana povelja, povelje z nosilcem v ustih."},
   {t:S16+" · Ocenjevanje", q:"Tekmovalec ob koncu nima čelade. Kaj je to?", o:["Nepravilna postavitev tekmovalcev","Pozabljena oprema","Diskvalifikacija"], e:"Manjkajoča osebna oprema (čelada) se oceni kot nepravilna postavitev."},
-  {t:S16+" · Sodniki", q:"Kaj meri S-2 poleg časa izvedbe vaje?", o:["Sprejme enoto na progi","Nadzira sesalni vod","Odmeri čas pri 41 m"], e:"S-2 meri čas in na progi sprejme enoto; po poročilu se postavi desno od začetne postavitve do trojaka."},
+  {t:S16+" · Sodniki", q:"Kaj poleg merjenja časa spremlja S-2 pri vaji z MB?", o:["Delo napadalcev od MB do trojaka, polaganje obeh cevovodov ter delo D in S","Spajanje sesalnega voda in delo strojnika","Sprejem enote na progi in postavitev opreme"], e:"S-2 meri čas, spremlja delo napadalcev od MB do trojaka, polaganje obeh cevovodov ter delo D in S; po poročilu stoji desno od začetne postavitve do trojaka. Enoto na progi sprejme S-4."},
   {t:S16+" · Sodniki", q:"Kje se postavi S-3 po predaji poročila?", o:["Na desno stran za tekmovalno enoto","Pred MB","Pri trojaku"], e:"S-3 se postavi desno za enoto in nadzira sesalni vod do prihoda GS."},
   {t:S16+" · Sodniki", q:"Kaj naredi S-4?", o:["Sprejme enoto, prevzame liste, nadzira postavljanje opreme in dovoli postrojitev","Meri čas","Ocenjuje napadalce"], e:"S-4 sprejme enoto, prevzame tekmovalne liste, nadzira postavljanje opreme in izda D dovoljenje za postrojitev."},
   {t:S16+" · Sodniki", q:"Kje stoji GS pri elektronskem merjenju časa ob koncu?", o:["V bližini 41 m, kjer nadzira C-1","Pri MB","Ob startni tipki"], e:"Pri elektronskem merjenju stoji GS blizu 41 m in nadzira delo C-1."},
@@ -3326,7 +3326,7 @@ const P19 = [
   {t:S19+" · Vodo zapri", q:"Ali mora C-1 najprej zapreti ventile ali najprej poveljevati strojniku?", o:["Sam se odloči","Najprej zapre ventile","Najprej poveljuje St"], e:"C-1 se sam odloči o vrstnem redu."},
   {t:S19+" · Mokri del", q:"Kdo sme v mokrem delu zamenjati poškodovano cev?", o:["Katerikoli tekmovalec, na poljuben način","Samo C-2","Samo S"], e:"Rezervno cev pri mokrem delu lahko zamenja katerikoli tekmovalec; St ali C-1 zapirata in odpirata ventile brez povelj."},
   {t:S19+" · Mokri del", q:"Kdaj so cevi v mokrem delu slabo položene?", o:["Samo v primeru polža ali kupa cevi","Vedno, ko so zavite","Nikoli"], e:"V mokrem delu le v primeru polža ali kupa cevi."},
-  {t:S19+" · Mokri del", q:"Ali sme rezervna cev cevarjev biti predana tekmovalcu, ki se vrača po cev v suhem delu?", o:["Ne, vzeti si jo mora sam","Da","Le vodarju"], e:"Rezervne cevi cevarjev ne smejo predati; tekmovalec si jo mora vzeti sam."},
+  {t:S19+" · Mokri del", q:"V mokrem delu pokoči cev. Napadalec (ali vodar) nima več rezervne cevi in se mora vrniti po rezervno cev cevarjev (proti MB). Ali mu jo cevar sme predati?", o:["Ne, rezervno cev si mora vzeti sam","Da, cevar mu jo prinese ali preda","Da, a le vodarju"], e:"Ob počeni cevi v mokrem delu, ko napadalec ali vodar nima več rezervne cevi, se uporabi rezervna cev cevarjev; ta mu ne sme biti predana – tekmovalec, ki se vrača ponjo, si jo mora vzeti sam."},
   {t:S19+" · Mokri del", q:"Napadalca ob podiranju tarče ne stojita na svojih mestih. Kaj je to?", o:["Nepravilna postavitev tekmovalcev","Ni napaka","Prestop ognjene črte"], e:"Pri podiranju tarč morajo biti na svojih mestih."},
   {t:S19+" · Mokri del", q:"Napadalec v času zbitja tarče s celim stopalom prestopi ognjeno črto. Kako se oceni?", o:["Prestop ognjene črte (po skupini)","Ni napaka","Nepravilno delo"], e:"Prestop ognjene črte se oceni po skupini."},
   {t:S19+" · Mokri del", q:"Vodarja zbijeta tarčo napadalcev. Kako se oceni?", o:["Zrušena tuja tarča","Ni napaka","Nepravilno delo"], e:"Zrušenje tuje tarče je posebna napaka."},
@@ -3367,7 +3367,7 @@ const P19 = [
   {t:S19+" · 3. napad", q:"Kdaj se sme C-2 približati C cevem za tretji vod?", o:["Ko je konec mokrega dela","Kadarkoli","Šele po »Končano«"], e:"C-2 se lahko približa C cevem, ko je konec mokrega dela."},
   {t:S19+" · 3. napad", q:"Na kateri izliv trojaka C-2 priklopi tretji vod?", o:["Srednji","Levi","Desni"], e:"C-2 priklopi C cev na srednji izliv (prehodna spojka B/C)."},
   {t:S19+" · 3. napad", q:"C-2 razvije drugo C cev tretjega voda z nogo. Kako se oceni?", o:["Nepravilno delo","Ni napaka","Vlečenje razvitih cevi"], e:"C cev mora vsaj prijeti z roko; z nogo ni dovoljeno."},
-  {t:S19+" · 3. napad", q:"Kdaj sme C-1 odpeti cevni nosilec druge C cevi?", o:["Šele ko je spel ročnik in cev","Takoj","Pred spajanjem"], e:"C-1 lahko odpne nosilec šele po spojitvi ročnika in cevi; ročnika in cevi ne sme spajati istočasno."},
+  {t:S19+" · 3. napad", q:"Kdaj sme C-1 odpeti cevni nosilec druge C cevi?", o:["Pred ali po spajanju cevi in ročnika – poljubno","Samo pred spajanjem cevi in ročnika","Samo po spajanju cevi in ročnika"], e:"C-1 lahko cevni nosilec druge C cevi odpne pred spajanjem cevi in ročnika ali po njem – vrstni red ni predpisan."},
   {t:S19+" · 3. napad", q:"C-2 pobere cevni nosilec in ga preda C-1. Kako se oceni?", o:["Nepravilno delo","Ni napaka","Pozabljena oprema"], e:"C-1 sme pobrati svoj nosilec tudi po razvitju; če to stori C-2 – nepravilno delo."},
   {t:S19+" · 3. napad", q:"Katero povelje izda C-1 po spetju tretjega voda?", o:["»Tretja vodo!«","»Prva vodo!«","»Vodo daj!«"], e:"C-1: »Tretja vodo«; S na trojaku sprejme z dvigom roke."},
   {t:S19+" · 3. napad", q:"Kje stoji C-2 pri tretjem napadalnem vodu?", o:["Desno ob C-1","Levo ob C-1","Pri trojaku"], e:"C-2 se postavi desno ob C-1; ne smeta več pobirati opreme."},
@@ -3719,6 +3719,52 @@ P12.push(
 P8.push({t:S8+" · Proga", q:"Kje je drugi del proge pri vaji z ovirami za mladince?", o:["Od 60 do 65 m (vedrovki in tarči)","Od 0 do 60 m","Od 65 do 70 m","Od 70 do 75 m"], e:"Deli proge: 1. del 0–60 m (ovire in cevovod), 2. del 60–65 m (vedrovki in tarči), 3. del 65–70 m (orodje in vozli), 4. del 70–75 m (končna postavitev)."});
 P8.push({t:S8+" · Proga", q:"Kako je razdeljena proga pri vaji z ovirami za mladince?", o:["1. del 0–60 m, 2. del 60–65 m, 3. del 65–70 m, 4. del 70–75 m","1. del 0–50 m, 2. del 50–60 m, 3. del 60–70 m, 4. del 70–75 m","1. del 0–60 m, 2. del 60–70 m, 3. del 70–75 m"], e:"1. del: ovire in polaganje cevovoda (do 60 m), 2. del: vedrovki in tarči (60–65 m), 3. del: orodje in vozli (65–70 m), 4. del: končna postavitev (70–75 m)."});
 P9.push({t:S9+" · Proga", q:"Kje poteka deveti del proge pri štafeti za mladince?", o:["Od 350 m do cilja (400 m)","Od 300 do 350 m","Od 375 do 400 m"], e:"Deveti del poteka od oznake 350 m do cilja; do 365 m mora biti ročnik predan tekmovalcu 9, na 380 m sta trojak in 2 C cevi."});
+P1.push(
+  {t:"1 · Splošno", q:"Ali sme tekmovalec na istem tekmovanju nastopiti za več tekmovalnih enot?", o:["Ne","Da","Da, v različnih kategorijah"], e:"Tekmovalec ne sme nastopiti za več tekmovalnih enot; nastop v različnih enotah pomeni diskvalifikacijo."},
+  {t:"1 · Splošno", q:"Kako se pri vaji z MB izračuna čas ob ročnem merjenju?", o:["Seštevek vseh treh meritev, deljen s tri","Velja najboljši čas","Velja čas GS"], e:"Seštevek vseh treh meritev se deli s tri in dobimo čas, ki ga je dosegla enota."},
+  {t:"1 · Splošno", q:"V katero področje spadajo gasilska tekmovanja?", o:["Med strokovno in praktično izobraževanje gasilcev","Med rekreacijo","Med operativne intervencije"], e:"Gasilska tekmovanja spadajo med strokovno in praktično izobraževanje gasilcev."}
+);
+P5.push({t:S5+" · Izvedba", q:"Tekmovalcu pri oviri pade ročnik na tla pred oviro. Kaj mora storiti?", o:["Pobrati ročnik in šele z njim premagati oviro","Oviro premaga brez ročnika","Ročnik mu poda sodnik"], e:"Tekmovalec mora ročnik pobrati in šele z njim premagati oviro ter teči naprej, da ni napaka."});
+P8.push(
+  {t:S8+" · Izvedba", q:"Tekmovalec 3 prehiti tekmovalca 1 med preskokom ograje (na oviri). Kako se oceni?", o:["Nepravilno delo","Ni napaka","Nepravilno premagana ovira"], e:"Ovire mora prvi premagati tekmovalec 1; prehitevanje na oviri je nepravilno delo (med dvema ovirama pa ni napaka)."},
+  {t:S8+" · Izvedba", q:"Ali sme tekmovalec 5 popraviti cev, ki se je zataknila na vedrovki?", o:["Ne","Da","Samo z dovoljenjem sodnika"], e:"Tekmovalec 5 upravlja z vedrovko, s cevjo upravlja tekmovalec 4 – cevi ne sme popravljati."},
+  {t:S8+" · Izvedba", q:"Komu tekmovalec 6 izroči spojko prve C cevi?", o:["Tekmovalcu 7","Tekmovalcu 8","Tekmovalcu 9"], e:"Tekmovalec 6 spojko prve C cevi izroči tekmovalcu 7, ki cev razvleče."},
+  {t:S8+" · Izvedba", q:"Tekmovalec 9 pri vezanju vozla stoji z enim celim stopalom zunaj proge. Kako se oceni?", o:["Ni napaka (napaka je šele z obema stopaloma)","Nepravilno delo","Nepravilna navezava vozla"], e:"Napaka je šele, če stopi z obema stopaloma izven proge."}
+);
+P10.push({t:S10+" · Izvedba", q:"V-2 preda spojko cevi v zraku, cev pa nato pade na tla. Kako se oceni?", o:["Ni napaka","Nepravilno delo","Metanje spojk"], e:"Če je spojka predana v zraku in cev nato pade, to ni napaka."});
+P16.push(
+  {t:S16+" · Spajanje", q:"C-1 pri spajanju sesalnih cevi ne prestopa cevi, ampak jih »jaha«. Kako se oceni?", o:["Nepravilno delo","Ni napaka","Odpeta spojka"], e:"Cevi je treba pri spajanju prestopati, ne jahati – nepravilno delo."},
+  {t:S16+" · D in S", q:"Desetar se na poti do trojaka ustavi na sredini druge B cevi (zunaj območja sesalnega voda). Kako se oceni?", o:["Ni napaka","Nepravilno delo","Nepravilna postavitev"], e:"Ustaviti se smeta, le ne v območju spajanja sesalnih cevi."},
+  {t:S16+" · Vezanje", q:"V-1 pri vezanju vezalne vrvi z eno nogo prestopi prednjo linijo MB. Kako se oceni?", o:["Ni napaka, a le, dokler veže","Zapustitev mesta pred »Končano«","Nepravilno delo"], e:"V-1 sme prednjo linijo MB prestopiti samo v času, ko veže vezalno vrv."},
+  {t:S16+" · Napad", q:"Kako se postavita napadalca po povelju »Prva vodo«?", o:["N-2 desno od N-1, telo ob telesu, oba z obema rokama na ročniku, v smeri napada","N-2 za N-1","N-2 levo, drži samo cev"], e:"Zavzameta položaj za napad: N-2 desno od N-1, s telesom drug ob drugem, gledata v smeri napada, z obema rokama na ročniku."},
+  {t:S16+" · Vezanje", q:"Kdaj so sesalne cevi napačno vezane?", o:["Če je zanka na spojki ali več kot 50 cm pod spojko","Če je zanka 30 cm pod spojko","Če vod ni v ravni črti"], e:"Napačno: zanka na spojki (na višjem delu) ali več kot 50 cm pod spojko (oznaka na sesalni cevi)."},
+  {t:S16+" · Napad", q:"N-1 pozabi trojak in se sam vrne ponj. Kako se oceni?", o:["Ni napaka","Pozabljena oprema","Nepravilno delo"], e:"Če se N-1 sam vrne po pozabljeni trojak, to ni napaka."},
+  {t:S16+" · Napad", q:"N-1 pozabi trojak in mu ga prinese N-2. Kako se oceni?", o:["Pozabljena ali izgubljena oprema","Ni napaka","Nepravilno delo"], e:"Če trojak prinese drug tekmovalec, se oceni pozabljena ali izgubljena oprema."},
+  {t:S16+" · Napad", q:"N-1 pri spajanju C cevi ne odpne cevnega nosilca (odpne ga kasneje). Kako se oceni?", o:["Ni napaka","Nepravilno delo","Nepravilno polaganje"], e:"Ni napaka, če nosilec odpne šele po spajanju."},
+  {t:S16+" · Napad", q:"N-2 izgubi cevni nosilec in mu ga pobere N-1. Kako se oceni?", o:["Nepravilno delo","Ni napaka","Pozabljena oprema"], e:"Če izgubljen nosilec pobere drug tekmovalec, je to nepravilno delo."},
+  {t:S16+" · B vod", q:"Tekmovalec prvo B cev izvleče iz nosilca na mestu, kjer je cev stala, in ne pri MB. Kako se oceni?", o:["Ni napaka (velja samo za to cev)","Nepravilno delo","Slabo položena cev"], e:"Samo pri prvi B cevi se nosilec lahko izvleče na mestu, kjer je cev stala; pri ostalih cevih vedno na mestu razvijanja."},
+  {t:S16+" · Spajanje", q:"St pri spajanju sesalnih cevi ne poveljuje »gor – dol«. Kako se oceni?", o:["Ni napaka","Govorjenje","Nepravilno delo"], e:"Povelji »gor – dol« nista obvezni."},
+  {t:S16+" · Spajanje", q:"St pri predaji položi ključa na spojko sesalne cevi in koša. Kako se oceni?", o:["Ni napaka","Nepravilno delo","Metanje orodja"], e:"Ključa lahko St pri predaji položi na spojko sesalne cevi in koša."},
+  {t:S16+" · Postavitev", q:"S čim mora biti opremljen sel ob koncu vaje z MB?", o:["Z ničimer","S torbico s cevnimi obvezami","S ključem"], e:"Pri vaji z MB ima torbico s cevnimi obvezami C-2; sel ob koncu nima pri sebi ničesar."},
+  {t:S16+" · D in S", q:"Kaj naredi sel takoj po startu?", o:["Odskoči, se umakne in gre do višine trojaka","Pomaga pri sesalnih ceveh","Vzame torbico"], e:"Sel takoj po startu odskoči oz. se umakne in odide do višine trojaka."},
+  {t:S16+" · Povelja", q:"N-1 namesto »Prva vodo« reče samo »Vodo«. Kako se oceni?", o:["Napačno oziroma nerazumljivo povelje","Ni napaka","Nepravilno delo"], e:"Povelje mora biti »Prva vodo«; samo »Vodo« je napačno oz. nerazumljivo povelje."},
+  {t:S16+" · Postavitev", q:"Tekmovalec izgubi cevni nosilec, ga pobere in ga ima ob koncu pri sebi. Kako se oceni?", o:["Ni napaka","Pozabljena oprema","Nepravilno delo"], e:"Če nosilec pobere sam in ga ima ob koncu pri sebi, to ni napaka."},
+  {t:S16+" · Vezanje", q:"C-1 torbico z ventilno vrvjo po priklopu vrže ob MB. Kako se oceni?", o:["Neučinkovito ali slabo položena ventilna vrv","Ni napaka","Metanje orodja"], e:"Torbice ne sme metati, ampak jo mora odložiti."},
+  {t:S16+" · Vezanje", q:"V-1 vezalno vrv do MB povleče preko B cevi. Kako se oceni?", o:["Nepravilno delo","Ni napaka","Neučinkovito vezana vezalna vrv"], e:"Vezalno vrv mora povleči pod B cevjo; preko B cevi je nepravilno delo."},
+  {t:S16+" · Vezanje", q:"V-2 po povelju »Veži« dvigne vod na sredini druge cevi, nato prime za spojko. Kako se oceni?", o:["Ni napaka (pri prenosu mora držati spojko)","Nepravilno delo","Odpeta spojka"], e:"Pri vezanju V-2 dvigne vod na sredini druge cevi; pri prenosu pa mora držati za spojko."},
+  {t:S16+" · Povelja", q:"Kdaj mora biti dano povelje »Druga vodo« pri vaji z MB?", o:["Ko V-2 priključi cevovod na desni izliv trojaka in je vse speto","Takoj po »Prva vodo«","Ko je V-1 na ognjeni črti"], e:"»Druga vodo« sme biti dano, ko V-2 priključi cevovod na desni izliv trojaka in je vse speto."}
+);
+P18.push({t:S18+" · Postavitev", q:"Kako se tekmovalci pri SSV ob končni postavitvi dotikajo črte?", o:["S sprednjim delom stopala obeh nog","S peto","Ne smejo se je dotikati"], e:"S sprednjim delom stopala obeh nog se morajo dotikati črte končne postavitve."});
+P17.push(
+  {t:S17+" · Izvedba", q:"Tekmovalec med štafeto izgubi čelado in je ne pobere. Kako se oceni?", o:["Manjkajoča osebna oprema","Ni napaka","Diskvalifikacija"], e:"Če tekmovalec med tekom izgubi del osebne opreme (npr. čelado) in ga ne pobere, je to napaka – manjkajoča osebna oprema."},
+  {t:S17+" · Enota", q:"Kako so tekmovalci razporejeni po progi pri štafeti za člane?", o:["Poljubno oziroma kot jih določi desetar","Po velikosti","Po funkcijah D, S, St …"], e:"Razporeditev po progi je poljubna oziroma jo določi desetar."}
+);
+P11.push(
+  {t:S11+" · Sodniki", q:"Kje stoji S-2 po izvedeni vaji s hidrantom za 7 tekmovalcev?", o:["Ob strojniku, desno v smeri napada","Pred napadalcema","Pri trojaku"], e:"Po izvedeni vaji stoji S-2 ob strojniku na desni strani, gledano v smeri napada."},
+  {t:S11+" · Povelja", q:"Kdo pri vaji s hidrantom za 7 tekmovalcev izda povelje »Druga vodo«?", o:["V-1","V-2","Sel"], e:"Povelje »Druga vodo« izda V-1 (V-2 izda »Vodo daj« pri trojaku)."}
+);
+P12.push({t:S12+" · Ocenjevanje", q:"N-1 v trenutku zbitja tarče stoji na ognjeni črti, ne čez njo s celim stopalom. Kako se oceni?", o:["Ni napaka","Prestop ognjene črte","Nepravilno delo"], e:"Napaka je le, če s celim stopalom stoji čez ognjeno črto."});
+
 /* Tabele točk po starosti še k vprašanjem, ki zahtevajo branje iz tabele */
 function dtFull(base, step, count){
   const per = Math.ceil(count/2), cols = [0,1].map(c=>Array.from({length:per},(_,r)=>c*per+r).filter(k=>k<count));
